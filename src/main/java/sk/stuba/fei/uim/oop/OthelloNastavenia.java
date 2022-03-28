@@ -8,7 +8,7 @@ public class OthelloNastavenia extends ZakladneNastavenia{
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case 'r':
+            case KeyEvent.VK_R:
                 System.out.println("hello");
 
         }

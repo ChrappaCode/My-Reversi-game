@@ -2,7 +2,7 @@ package sk.stuba.fei.uim.oop.nastavenia;
 
 import java.awt.event.*;
 
-public class OthelloNastavenia extends ZakladneNastavenia {
+public class OthelloNastavenia extends UniverzalnyAdapter {
 
     @Override
     public void keyPressed(KeyEvent e) {

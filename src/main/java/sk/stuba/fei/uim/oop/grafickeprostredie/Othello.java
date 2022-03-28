@@ -1,14 +1,11 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import sk.stuba.fei.uim.oop.MyPanel;
+import sk.stuba.fei.uim.oop.Tuk;
 import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
-import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
 
 import javax.swing.*;
-import javax.swing.Box;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 
 public class Othello {
 
@@ -25,17 +22,24 @@ public class Othello {
 
 
         OthelloNastavenia nastavenia = new OthelloNastavenia();
+        Tuk tuk = new Tuk();
         okno.addKeyListener(nastavenia);
 
-
-        /*HernaPlocha hernaPlocha = new HernaPlocha();
+        /*
+        HernaPlocha hernaPlocha = new HernaPlocha();
         System.out.println("here : ");
-        hernaPlocha.NovaPlocha();*/
+        hernaPlocha.NovaPlocha();
+        */
 
         for (int i = 0; i < 64; i++) {
 
             //okno.add(new MyPanel());
-            okno.add(new JButton());
+            JButton button = new JButton();
+            button.addActionListener(tuk);
+            okno.add(button);
+
+
+
         }
 
         JPanel sideMenu = new JPanel();

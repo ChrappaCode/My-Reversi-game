@@ -1,6 +1,6 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import jdk.jshell.UnresolvedReferenceException;
+import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
 
 import javax.swing.*;
 import java.awt.*;

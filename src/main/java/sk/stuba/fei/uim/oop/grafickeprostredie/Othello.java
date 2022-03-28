@@ -18,11 +18,9 @@ public class Othello {
         okno.getContentPane().setBackground(Color.cyan);
         okno.setLayout(new GridLayout(9,8));
 
-
-
-
         OthelloNastavenia nastavenia = new OthelloNastavenia();
         Tuk tuk = new Tuk();
+
         okno.addKeyListener(nastavenia);
 
         /*
@@ -38,26 +36,30 @@ public class Othello {
             button.addActionListener(tuk);
             okno.add(button);
 
-
-
         }
 
+        //GridBagConstraints c = new GridBagConstraints();
         JPanel sideMenu = new JPanel();
+
         sideMenu.setBackground(Color.LIGHT_GRAY);
 
         JButton buttonRestart = new JButton("Reštart");
+
+        /*c.fill = GridBagConstraints.HORIZONTAL;
+        c.ipady = 40;
+        c.weightx = 0.0;
+        c.gridwidth = 3;
+        c.gridx = 0;
+        c.gridy = 1;*/
 
         buttonRestart.addActionListener(nastavenia);
         buttonRestart.setFocusable(false);
 
         sideMenu.setLayout(new FlowLayout());
-
         sideMenu.add(buttonRestart);
 
 
-        okno.add(sideMenu, BorderLayout.LINE_END);
-
-
+        okno.add(sideMenu);
         okno.setVisible(true);
 
     }

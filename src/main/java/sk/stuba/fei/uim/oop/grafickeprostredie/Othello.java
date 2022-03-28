@@ -7,6 +7,8 @@ import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
 import javax.swing.*;
 import javax.swing.Box;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Othello {
 
@@ -16,20 +18,24 @@ public class Othello {
         okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         okno.setSize(550,550);
         okno.setResizable(false);
-        okno.setLayout(new GridLayout(8,8));
+        okno.getContentPane().setBackground(Color.cyan);
+        okno.setLayout(new GridLayout(9,8));
+
+
+
 
         OthelloNastavenia nastavenia = new OthelloNastavenia();
         okno.addKeyListener(nastavenia);
 
-        HernaPlocha hernaPlocha = new HernaPlocha();
+
+        /*HernaPlocha hernaPlocha = new HernaPlocha();
         System.out.println("here : ");
-        hernaPlocha.NovaPlocha();
+        hernaPlocha.NovaPlocha();*/
 
-        //okno.add(nastavenia.getRender());
+        for (int i = 0; i < 64; i++) {
 
-        for (int i = 0; i < 63; i++) {
-
-            okno.add(new MyPanel());
+            //okno.add(new MyPanel());
+            okno.add(new JButton());
         }
 
         JPanel sideMenu = new JPanel();
@@ -40,14 +46,15 @@ public class Othello {
         buttonRestart.addActionListener(nastavenia);
         buttonRestart.setFocusable(false);
 
-        sideMenu.setLayout(new GridLayout());
+        sideMenu.setLayout(new FlowLayout());
 
         sideMenu.add(buttonRestart);
 
 
-        okno.add(sideMenu, BorderLayout.LINE_START);
+        okno.add(sideMenu, BorderLayout.LINE_END);
 
 
         okno.setVisible(true);
+
     }
 }

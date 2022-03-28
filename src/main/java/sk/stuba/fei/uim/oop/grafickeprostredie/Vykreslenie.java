@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Vykreslenie extends JPanel {
 
-
+    HernaPlocha plocha;
 
 
 }

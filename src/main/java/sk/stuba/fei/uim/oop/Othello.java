@@ -1,5 +1,7 @@
 package sk.stuba.fei.uim.oop;
 
+import jdk.jshell.UnresolvedReferenceException;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -13,6 +15,8 @@ public class Othello {
         okno.setResizable(false);
         okno.setLayout(new GridLayout());
 
+        OthelloNastavenia nastavenia = new OthelloNastavenia();
+        okno.addKeyListener(nastavenia);
 
         okno.setVisible(true);
     }

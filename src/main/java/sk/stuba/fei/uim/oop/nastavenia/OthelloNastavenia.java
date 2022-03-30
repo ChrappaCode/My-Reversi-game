@@ -14,22 +14,30 @@ public class OthelloNastavenia extends UniverzalnyAdapter {
     public OthelloNastavenia() {
     }
 
-    public void gameRestart() {
+    public void restart() {
         System.out.println("reset");
     }
+
+    public void zavriHru() {
+        System.out.println("Zavri sa");
+        System.exit(0);
+    }
+
 
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_R:
-                this.gameRestart();
-
+                this.restart();
+                break;
+            case KeyEvent.VK_ESCAPE:
+                this.zavriHru();
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.gameRestart();
+        this.restart();
     }
 
     @Override

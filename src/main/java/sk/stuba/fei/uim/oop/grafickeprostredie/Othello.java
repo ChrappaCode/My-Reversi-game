@@ -1,13 +1,12 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
+import sk.stuba.fei.uim.oop.BoxLogika;
 import sk.stuba.fei.uim.oop.MyPanel;
 import sk.stuba.fei.uim.oop.Tuk;
 import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
-import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
 
 import javax.swing.*;
 import java.awt.*;
-
 
 public class Othello {
 
@@ -15,43 +14,44 @@ public class Othello {
 
         JFrame okno = new JFrame("Hra Othello");
         okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        okno.setSize(550,550);
+        okno.setSize(650,650);
         okno.setResizable(false);
         okno.getContentPane().setBackground(Color.cyan);
-        okno.setLayout(new GridLayout(9,8));
-
-
+        okno.setLayout(new GridLayout(9,8 , 5 ,5));
 
         OthelloNastavenia nastavenia = new OthelloNastavenia();
         Tuk tuk = new Tuk();
+        BoxLogika boxLogika = new BoxLogika();
 
-        /*
-        HernaPlocha hernaPlocha = new HernaPlocha();
-        System.out.println("here : ");
-        hernaPlocha.NovaPlocha();
-        */
 
         for (int i = 0; i < 64; i++) {
 
             //okno.add(new MyPanel());
-            JButton button = new JButton();
-            button.addActionListener(tuk);
-            button.addKeyListener(nastavenia);
-            okno.add(button);
+            JButton tlacitko = new JButton();
+            tlacitko.addActionListener(tuk);
+            tlacitko.addKeyListener(nastavenia);
+            okno.add(tlacitko);
         }
 
 
-        JPanel sideMenu = new JPanel();
-        sideMenu.setBackground(Color.RED);
+        JPanel menu = new JPanel();
+        menu.setBackground(Color.RED);
+        menu.setLayout(new GridLayout(2, 1));
 
-        JButton buttonRestart = new JButton("Reštart");
-        buttonRestart.addActionListener(nastavenia);
-        buttonRestart.addKeyListener(nastavenia);
+        JButton restart = new JButton("Reštart");
+        restart.addActionListener(nastavenia);
+        restart.addKeyListener(nastavenia);
 
-        sideMenu.setLayout(new FlowLayout());
-        sideMenu.add(buttonRestart);
-        okno.add(sideMenu);
+        String[] velkosti ={"6x6","8x8","10x10","12x12"};
+        JComboBox box = new JComboBox(velkosti);
+        box.addActionListener(boxLogika);
 
+        System.out.println(box.getSelectedItem());
+
+        menu.setLayout(new FlowLayout());
+        menu.add(restart , BorderLayout.LINE_END);
+        menu.add(box ,BorderLayout.LINE_START);
+        okno.add(menu , BorderLayout.PAGE_START);
 
 
 

@@ -2,6 +2,7 @@ package sk.stuba.fei.uim.oop.nastavenia;
 
 
 import lombok.Setter;
+import sk.stuba.fei.uim.oop.grafickeprostredie.Othello;
 
 import javax.swing.*;
 import java.awt.event.*;

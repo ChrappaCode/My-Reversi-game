@@ -1,8 +1,7 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import sk.stuba.fei.uim.oop.BoxLogika;
-import sk.stuba.fei.uim.oop.MyPanel;
-import sk.stuba.fei.uim.oop.Tuk;
+import sk.stuba.fei.uim.oop.nastavenia.BoxLogika;
+import sk.stuba.fei.uim.oop.nastavenia.Tuk;
 import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
 
 import javax.swing.*;

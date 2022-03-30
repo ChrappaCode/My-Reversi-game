@@ -8,7 +8,8 @@ public class Tuk extends UniverzalnyAdapter {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("niggaaaaa");
+        System.out.println("D a c o");
     }
+
 
 }

@@ -1,7 +1,9 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
+import sk.stuba.fei.uim.oop.MyPanel;
 import sk.stuba.fei.uim.oop.Tuk;
 import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
+import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,22 +23,22 @@ public class Othello {
         OthelloNastavenia nastavenia = new OthelloNastavenia();
         Tuk tuk = new Tuk();
 
-        okno.addKeyListener(nastavenia);
-
-        /*
         HernaPlocha hernaPlocha = new HernaPlocha();
         System.out.println("here : ");
         hernaPlocha.NovaPlocha();
-        */
+
 
         for (int i = 0; i < 64; i++) {
 
             //okno.add(new MyPanel());
             JButton button = new JButton();
             button.addActionListener(tuk);
+            button.addKeyListener(nastavenia);
             okno.add(button);
 
         }
+
+
 
         //GridBagConstraints c = new GridBagConstraints();
         JPanel sideMenu = new JPanel();
@@ -45,19 +47,10 @@ public class Othello {
 
         JButton buttonRestart = new JButton("Reštart");
 
-        /*c.fill = GridBagConstraints.HORIZONTAL;
-        c.ipady = 40;
-        c.weightx = 0.0;
-        c.gridwidth = 3;
-        c.gridx = 0;
-        c.gridy = 1;*/
-
         buttonRestart.addActionListener(nastavenia);
-        buttonRestart.setFocusable(false);
 
         sideMenu.setLayout(new FlowLayout());
         sideMenu.add(buttonRestart);
-
 
         okno.add(sideMenu);
         okno.setVisible(true);

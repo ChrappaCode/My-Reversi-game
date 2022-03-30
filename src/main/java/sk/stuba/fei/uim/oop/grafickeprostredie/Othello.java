@@ -16,12 +16,15 @@ public class Othello {
         okno.setSize(650,650);
         okno.setResizable(false);
         okno.getContentPane().setBackground(Color.cyan);
-        okno.setLayout(new GridLayout(9,8 , 5 ,5));
+        okno.setLayout(new BorderLayout());
 
         OthelloNastavenia nastavenia = new OthelloNastavenia();
         Tuk tuk = new Tuk();
         BoxLogika boxLogika = new BoxLogika();
 
+
+        JPanel hernyPanel = new JPanel();
+        hernyPanel.setLayout(new GridLayout(8,8,5,5));
 
         for (int i = 0; i < 64; i++) {
 
@@ -29,7 +32,7 @@ public class Othello {
             JButton tlacitko = new JButton();
             tlacitko.addActionListener(tuk);
             tlacitko.addKeyListener(nastavenia);
-            okno.add(tlacitko);
+            hernyPanel.add(tlacitko);
         }
 
 
@@ -47,10 +50,12 @@ public class Othello {
 
         System.out.println(box.getSelectedItem());
 
+
+        okno.add(hernyPanel);
         menu.setLayout(new FlowLayout());
         menu.add(restart , BorderLayout.LINE_END);
         menu.add(box ,BorderLayout.LINE_START);
-        okno.add(menu , BorderLayout.PAGE_START);
+        okno.add(menu , BorderLayout.PAGE_END);
 
 
 

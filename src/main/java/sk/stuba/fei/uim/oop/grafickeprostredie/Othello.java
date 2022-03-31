@@ -20,20 +20,20 @@ public class Othello {
 
         OthelloNastavenia nastavenia = new OthelloNastavenia();
         Tuk tuk = new Tuk();
-        BoxLogika boxLogika = new BoxLogika(okno);
 
 
         JPanel hernyPanel = new JPanel();
-        hernyPanel.setLayout(new GridLayout(8,8,5,5));
+        hernyPanel.setLayout(new GridLayout(6,6,5,5));
 
-        for (int i = 0; i < 64; i++) {
-
+        for (int i = 0; i < 36; i++) {
             //okno.add(new MyPanel());
             JButton tlacitko = new JButton();
             tlacitko.addActionListener(tuk);
             tlacitko.addKeyListener(nastavenia);
             hernyPanel.add(tlacitko);
         }
+
+        okno.setBackground(Color.YELLOW);
 
 
         JPanel menu = new JPanel();
@@ -46,6 +46,7 @@ public class Othello {
 
         String[] velkosti ={"6x6","8x8","10x10","12x12"};
         JComboBox box = new JComboBox(velkosti);
+        BoxLogika boxLogika = new BoxLogika(okno);
         box.addActionListener(boxLogika);
 
         System.out.println(box.getSelectedItem());

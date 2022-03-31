@@ -1,13 +1,12 @@
 package sk.stuba.fei.uim.oop.nastavenia;
 
-import sk.stuba.fei.uim.oop.nastavenia.UniverzalnyAdapter;
-
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class BoxLogika extends UniverzalnyAdapter{
 
-    private JFrame okno;
+    private final JFrame okno;
 
     public BoxLogika(JFrame okno){
         this.okno = okno;
@@ -15,19 +14,25 @@ public class BoxLogika extends UniverzalnyAdapter{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         JComboBox cb = (JComboBox) e.getSource();
         System.out.println(cb.getSelectedItem());
+
         if(cb.getSelectedItem().equals("6x6")){
             okno.setSize(550,550);
+
         }
-        if(cb.getSelectedItem().equals("8x8")){
+        else if(cb.getSelectedItem().equals("8x8")){
             okno.setSize(650,650);
+
         }
-        if(cb.getSelectedItem().equals("10x10")){
+        else if(cb.getSelectedItem().equals("10x10")){
             okno.setSize(750,750);
+
         }
-        if(cb.getSelectedItem().equals("12x12")){
+        else if(cb.getSelectedItem().equals("12x12")){
             okno.setSize(850,850);
+
         }
     }
 

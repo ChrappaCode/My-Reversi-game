@@ -1,7 +1,5 @@
 package sk.stuba.fei.uim.oop.nastavenia;
 
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.event.*;
 
 public class UniverzalnyAdapter implements KeyListener, MouseMotionListener, MouseListener, ActionListener, ItemListener{

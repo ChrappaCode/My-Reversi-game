@@ -13,14 +13,14 @@ public class Othello {
 
         JFrame okno = new JFrame("Hra Othello");
         okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        okno.setSize(650,650);
+        okno.setSize(550,550);
         okno.setResizable(false);
         okno.getContentPane().setBackground(Color.cyan);
         okno.setLayout(new BorderLayout());
 
         OthelloNastavenia nastavenia = new OthelloNastavenia();
         Tuk tuk = new Tuk();
-        BoxLogika boxLogika = new BoxLogika();
+        BoxLogika boxLogika = new BoxLogika(okno);
 
 
         JPanel hernyPanel = new JPanel();

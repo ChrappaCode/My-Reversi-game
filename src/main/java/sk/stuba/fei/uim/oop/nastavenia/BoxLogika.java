@@ -1,7 +1,6 @@
 package sk.stuba.fei.uim.oop.nastavenia;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class BoxLogika extends UniverzalnyAdapter{

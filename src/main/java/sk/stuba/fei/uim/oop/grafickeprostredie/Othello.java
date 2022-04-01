@@ -18,7 +18,7 @@ public class Othello {
         okno.getContentPane().setBackground(Color.cyan);
         okno.setLayout(new BorderLayout());
 
-        OthelloNastavenia nastavenia = new OthelloNastavenia();
+        OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
         Tuk tuk = new Tuk();
 
 

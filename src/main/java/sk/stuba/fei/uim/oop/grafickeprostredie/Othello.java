@@ -9,6 +9,11 @@ import java.awt.*;
 
 public class Othello {
 
+    private static final int VELKOST_HRACEJ_PLOCHY_X = 8;
+    private static final int VELKOST_HRACEJ_PLOCHY_Y = 8;
+    private static final int ODSKOK_HRACEJ_PLOCHY_X = 6;
+    private static final int ODSKOK_HRACEJ_PLOCHY_Y = 6;
+
     public Othello(){
 
         JFrame okno = new JFrame("Hra Othello");
@@ -23,9 +28,9 @@ public class Othello {
 
 
         JPanel hernyPanel = new JPanel();
-        hernyPanel.setLayout(new GridLayout(6,6,5,5));
+        hernyPanel.setLayout(new GridLayout(VELKOST_HRACEJ_PLOCHY_X,VELKOST_HRACEJ_PLOCHY_Y,ODSKOK_HRACEJ_PLOCHY_X,ODSKOK_HRACEJ_PLOCHY_Y));
 
-        for (int i = 0; i < 36; i++) {
+        for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X*VELKOST_HRACEJ_PLOCHY_Y; i++) {
             //okno.add(new MyPanel());
             JButton tlacitko = new JButton();
             tlacitko.addActionListener(tuk);

@@ -1,9 +1,14 @@
 package sk.stuba.fei.uim.oop.plocha;
 
+import lombok.Getter;
+
 public class HernaPlocha {
 
     private static final int VELKOST_PLOCHY = 8;
     private int[][] plocha;
+
+    @Getter
+    private int a = 0;
 
     public void NovaPlocha(){
 

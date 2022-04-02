@@ -30,7 +30,6 @@ public class OthelloNastavenia extends UniverzalnyAdapter {
         System.exit(0);
     }
 
-
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {

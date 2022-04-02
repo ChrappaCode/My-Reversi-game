@@ -3,6 +3,7 @@ package sk.stuba.fei.uim.oop.grafickeprostredie;
 import sk.stuba.fei.uim.oop.nastavenia.BoxLogika;
 import sk.stuba.fei.uim.oop.nastavenia.Tuk;
 import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
+import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,17 +19,16 @@ public class Othello {
 
         JFrame okno = new JFrame("Hra Othello");
         okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        okno.setSize(550,550);
+        okno.setSize(720,760);
         okno.setResizable(false);
-        okno.getContentPane().setBackground(Color.cyan);
         okno.setLayout(new BorderLayout());
 
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
         Tuk tuk = new Tuk();
 
-
         JPanel hernyPanel = new JPanel();
         hernyPanel.setLayout(new GridLayout(VELKOST_HRACEJ_PLOCHY_X,VELKOST_HRACEJ_PLOCHY_Y,ODSKOK_HRACEJ_PLOCHY_X,ODSKOK_HRACEJ_PLOCHY_Y));
+        hernyPanel.setBackground(Color.black);
 
         for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X*VELKOST_HRACEJ_PLOCHY_Y; i++) {
             //okno.add(new MyPanel());
@@ -38,12 +38,8 @@ public class Othello {
             hernyPanel.add(tlacitko);
         }
 
-        okno.setBackground(Color.YELLOW);
-
-
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);
-        menu.setLayout(new GridLayout(2, 1));
 
         JButton restart = new JButton("Reštart");
         restart.addActionListener(nastavenia);
@@ -51,21 +47,31 @@ public class Othello {
 
         String[] velkosti ={"6x6","8x8","10x10","12x12"};
         JComboBox box = new JComboBox(velkosti);
+        box.setBackground(Color.cyan);
+        box.setSelectedIndex(1);
         BoxLogika boxLogika = new BoxLogika(okno);
         box.addActionListener(boxLogika);
 
-        System.out.println(box.getSelectedItem());
+        HernaPlocha body = new HernaPlocha();
 
+        JLabel cierneBody = new JLabel("      čierne : " + body.getA() + "      ");
+        JLabel bieleBody = new JLabel("       biele : " + body.getA() + "       ");
+
+        cierneBody.setFont(new Font("Serif",Font.BOLD, 30));
+        bieleBody.setFont(new Font("Serif",Font.BOLD, 30));
+
+        cierneBody.setForeground(Color.black);
+        bieleBody.setForeground(Color.white);
 
         okno.add(hernyPanel);
-        menu.setLayout(new FlowLayout());
-        menu.add(restart , BorderLayout.LINE_END);
-        menu.add(box ,BorderLayout.LINE_START);
+
+        menu.setLayout(new BorderLayout());
+        menu.add(restart, BorderLayout.CENTER);
+        menu.add(box , BorderLayout.PAGE_END);
+        menu.add(cierneBody, BorderLayout.LINE_START);
+        menu.add(bieleBody , BorderLayout.LINE_END);
         okno.add(menu , BorderLayout.PAGE_END);
 
-
-
         okno.setVisible(true);
-
     }
 }

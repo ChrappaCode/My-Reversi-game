@@ -18,19 +18,19 @@ public class BoxLogika extends UniverzalnyAdapter{
         System.out.println(cb.getSelectedItem());
 
         if(cb.getSelectedItem().equals("6x6")){
-            okno.setSize(550,550);
+            okno.setSize(600,630);
 
         }
         else if(cb.getSelectedItem().equals("8x8")){
-            okno.setSize(650,650);
+            okno.setSize(720,760);
 
         }
         else if(cb.getSelectedItem().equals("10x10")){
-            okno.setSize(750,750);
+            okno.setSize(800,830);
 
         }
         else if(cb.getSelectedItem().equals("12x12")){
-            okno.setSize(850,850);
+            okno.setSize(920,960);
 
         }
     }

@@ -6,7 +6,7 @@ import sk.stuba.fei.uim.oop.grafickeprostredie.Othello;
 import javax.swing.*;
 import java.awt.event.*;
 
-public class OthelloNastavenia extends UniverzalnyAdapter {
+public class OthelloNastavenia extends UniverzalnyAdapter{
 
     private JFrame okno;
 
@@ -45,12 +45,4 @@ public class OthelloNastavenia extends UniverzalnyAdapter {
     public void actionPerformed(ActionEvent e) {
         this.restart();
     }
-
-    @Override
-    public void itemStateChanged(ItemEvent e) {
-
-        System.out.println("h");
-
-    }
-
 }

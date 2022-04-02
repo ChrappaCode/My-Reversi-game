@@ -1,5 +1,7 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
+import sk.stuba.fei.uim.oop.MyPanel;
+import sk.stuba.fei.uim.oop.MyskaNastavenia;
 import sk.stuba.fei.uim.oop.nastavenia.BoxLogika;
 import sk.stuba.fei.uim.oop.nastavenia.Tuk;
 import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
@@ -26,17 +28,23 @@ public class Othello {
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
         Tuk tuk = new Tuk();
 
+        Color whiteNigga = new Color(150,250,150 );
+
         JPanel hernyPanel = new JPanel();
+
+        MyskaNastavenia myskaNastavenia = new MyskaNastavenia(hernyPanel);
         hernyPanel.setLayout(new GridLayout(VELKOST_HRACEJ_PLOCHY_X,VELKOST_HRACEJ_PLOCHY_Y,ODSKOK_HRACEJ_PLOCHY_X,ODSKOK_HRACEJ_PLOCHY_Y));
-        hernyPanel.setBackground(Color.black);
+        hernyPanel.setBackground(whiteNigga);
 
         for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X*VELKOST_HRACEJ_PLOCHY_Y; i++) {
-            //okno.add(new MyPanel());
-            JButton tlacitko = new JButton();
+            hernyPanel.add(new MyPanel());
+            /*JButton tlacitko = new JButton();
             tlacitko.addActionListener(tuk);
             tlacitko.addKeyListener(nastavenia);
-            hernyPanel.add(tlacitko);
+            hernyPanel.add(tlacitko);*/
         }
+
+        hernyPanel.addMouseListener(myskaNastavenia);
 
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);
@@ -49,6 +57,7 @@ public class Othello {
         JComboBox box = new JComboBox(velkosti);
         box.setBackground(Color.cyan);
         box.setSelectedIndex(1);
+
         BoxLogika boxLogika = new BoxLogika(okno);
         box.addActionListener(boxLogika);
 

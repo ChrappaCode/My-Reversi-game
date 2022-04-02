@@ -16,7 +16,7 @@ public class MyPanel extends JPanel {
     private void niecoKresli(Graphics g){
 
         g.setColor(Color.black);
-        g.fillArc(12,12,40,40,0,360);
+        g.fillArc(36,38,40,40,0,360);
 
     }
 

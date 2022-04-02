@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class Othello {
 
-    private static final int VELKOST_HRACEJ_PLOCHY_X = 8;
-    private static final int VELKOST_HRACEJ_PLOCHY_Y = 8;
+    private static final int VELKOST_HRACEJ_PLOCHY_X = 6;
+    private static final int VELKOST_HRACEJ_PLOCHY_Y = 6;
     private static final int ODSKOK_HRACEJ_PLOCHY_X = 6;
     private static final int ODSKOK_HRACEJ_PLOCHY_Y = 6;
 

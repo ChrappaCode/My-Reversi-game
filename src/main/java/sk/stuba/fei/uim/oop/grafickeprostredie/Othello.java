@@ -1,7 +1,7 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import sk.stuba.fei.uim.oop.Kamen;
-import sk.stuba.fei.uim.oop.MyskaNastavenia;
+import sk.stuba.fei.uim.oop.objekty.Kamen;
+import sk.stuba.fei.uim.oop.nastavenia.MyskaNastavenia;
 import sk.stuba.fei.uim.oop.nastavenia.BoxLogika;
 import sk.stuba.fei.uim.oop.nastavenia.Tuk;
 import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;

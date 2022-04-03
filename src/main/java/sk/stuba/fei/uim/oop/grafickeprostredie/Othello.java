@@ -25,23 +25,27 @@ public class Othello {
         okno.setResizable(false);
         okno.setLayout(new BorderLayout());
 
+        okno.setIconImage(new ImageIcon(("/sk/stuba/fei/uim/oop/obrazky/Jayzniggawhatniggawho.jpg")).getImage());
+
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
         Tuk tuk = new Tuk();
 
         Color whiteNigga = new Color(100,255,100 );
 
         JPanel hernyPanel = new JPanel();
-
-        MyskaNastavenia myskaNastavenia = new MyskaNastavenia(hernyPanel);
         hernyPanel.setLayout(new GridLayout(VELKOST_HRACEJ_PLOCHY_X,VELKOST_HRACEJ_PLOCHY_Y,ODSKOK_HRACEJ_PLOCHY_X,ODSKOK_HRACEJ_PLOCHY_Y));
-        hernyPanel.setBackground(Color.magenta);
-
+        hernyPanel.setBackground(Color.DARK_GRAY);
 
 
         for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X*VELKOST_HRACEJ_PLOCHY_Y; i++) {
 
-            hernyPanel.add(new Kamen());
+            //hernyPanel.add(new Kamen());
 
+            JPanel mriezka = new JPanel( new BorderLayout() );
+            mriezka.setBorder(BorderFactory.createLineBorder(Color.black));
+            mriezka.setBackground(Color.green);
+            //mriezka.add(new Kamen());
+            hernyPanel.add(mriezka);
 
             /*JButton tlacitko = new JButton();
             tlacitko.addActionListener(tuk);
@@ -49,7 +53,7 @@ public class Othello {
             hernyPanel.add(tlacitko);*/
         }
 
-
+        MyskaNastavenia myskaNastavenia = new MyskaNastavenia(hernyPanel,okno);
         hernyPanel.addMouseListener(myskaNastavenia);
 
 

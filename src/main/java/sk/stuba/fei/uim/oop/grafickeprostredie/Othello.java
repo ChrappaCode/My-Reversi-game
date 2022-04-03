@@ -37,6 +37,7 @@ public class Othello {
         hernyPanel.setBackground(Color.magenta);
 
 
+
         for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X*VELKOST_HRACEJ_PLOCHY_Y; i++) {
 
             hernyPanel.add(new Kamen());

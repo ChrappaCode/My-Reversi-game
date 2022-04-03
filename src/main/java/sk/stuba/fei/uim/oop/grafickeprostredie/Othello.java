@@ -27,6 +27,7 @@ public class Othello {
 
         okno.setIconImage(new ImageIcon(("/sk/stuba/fei/uim/oop/obrazky/Jayzniggawhatniggawho.jpg")).getImage());
 
+
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
         Tuk tuk = new Tuk();
 

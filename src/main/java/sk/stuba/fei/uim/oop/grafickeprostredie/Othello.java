@@ -28,13 +28,13 @@ public class Othello {
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
         Tuk tuk = new Tuk();
 
-        Color whiteNigga = new Color(150,250,150 );
+        Color whiteNigga = new Color(100,255,100 );
 
         JPanel hernyPanel = new JPanel();
 
         MyskaNastavenia myskaNastavenia = new MyskaNastavenia(hernyPanel);
         hernyPanel.setLayout(new GridLayout(VELKOST_HRACEJ_PLOCHY_X,VELKOST_HRACEJ_PLOCHY_Y,ODSKOK_HRACEJ_PLOCHY_X,ODSKOK_HRACEJ_PLOCHY_Y));
-        hernyPanel.setBackground(whiteNigga);
+        hernyPanel.setBackground(Color.magenta);
 
 
         for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X*VELKOST_HRACEJ_PLOCHY_Y; i++) {

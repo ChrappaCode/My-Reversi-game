@@ -3,22 +3,21 @@ package sk.stuba.fei.uim.oop;
 import javax.swing.*;
 import java.awt.*;
 
-public class MyPanel extends JPanel {
+public class Kamen extends JPanel {
 
 
     @Override
     protected void paintComponent(Graphics g) {
 
-        this.niecoKresli(g);
+        this.kresliKruzok(g);
 
     }
 
-    private void niecoKresli(Graphics g){
+    private void kresliKruzok(Graphics g){
 
         g.setColor(Color.black);
         g.fillArc(36,38,40,40,0,360);
 
     }
-
 
 }

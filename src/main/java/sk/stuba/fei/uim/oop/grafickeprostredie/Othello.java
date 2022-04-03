@@ -1,6 +1,6 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import sk.stuba.fei.uim.oop.MyPanel;
+import sk.stuba.fei.uim.oop.Kamen;
 import sk.stuba.fei.uim.oop.MyskaNastavenia;
 import sk.stuba.fei.uim.oop.nastavenia.BoxLogika;
 import sk.stuba.fei.uim.oop.nastavenia.Tuk;
@@ -36,15 +36,21 @@ public class Othello {
         hernyPanel.setLayout(new GridLayout(VELKOST_HRACEJ_PLOCHY_X,VELKOST_HRACEJ_PLOCHY_Y,ODSKOK_HRACEJ_PLOCHY_X,ODSKOK_HRACEJ_PLOCHY_Y));
         hernyPanel.setBackground(whiteNigga);
 
+
         for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X*VELKOST_HRACEJ_PLOCHY_Y; i++) {
-            hernyPanel.add(new MyPanel());
+
+            hernyPanel.add(new Kamen());
+
+
             /*JButton tlacitko = new JButton();
             tlacitko.addActionListener(tuk);
             tlacitko.addKeyListener(nastavenia);
             hernyPanel.add(tlacitko);*/
         }
 
+
         hernyPanel.addMouseListener(myskaNastavenia);
+
 
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);

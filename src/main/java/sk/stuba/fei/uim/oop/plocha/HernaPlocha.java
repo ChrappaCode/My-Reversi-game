@@ -2,6 +2,8 @@ package sk.stuba.fei.uim.oop.plocha;
 
 import lombok.Getter;
 
+import java.awt.*;
+
 public class HernaPlocha {
 
     private static final int VELKOST_PLOCHY = 8;
@@ -19,8 +21,6 @@ public class HernaPlocha {
         System.out.println(plocha[0][0]);
 
     }
-
-
 
 
 }

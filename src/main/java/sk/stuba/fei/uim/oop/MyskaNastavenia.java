@@ -16,7 +16,8 @@ public class MyskaNastavenia extends UniverzalnyAdapter {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.println(panel.getComponentAt(e.getPoint()));
+        System.out.print("x : " + panel.getComponentAt(e.getPoint()).getX());
+        System.out.println(" | y : " + panel.getComponentAt(e.getPoint()).getY());
     }
 
 

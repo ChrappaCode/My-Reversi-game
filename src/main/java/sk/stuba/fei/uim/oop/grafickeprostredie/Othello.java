@@ -7,8 +7,10 @@ import sk.stuba.fei.uim.oop.nastavenia.Tuk;
 import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
 import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 
 public class Othello {
@@ -24,6 +26,10 @@ public class Othello {
         okno.setResizable(false);
         okno.setLayout(new BorderLayout());
 
+        try {
+            okno.setIconImage(ImageIO.read(Othello.class.getResourceAsStream("/Jayzniggawhatniggawho.jpg")));
+        }
+        catch (IOException e){}
 
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
         Tuk tuk = new Tuk();
@@ -44,7 +50,6 @@ public class Othello {
             mriezka.setBorder(BorderFactory.createLineBorder(Color.black,4));
             mriezka.setBackground(Color.green);
             hernyPanel.add(mriezka);
-
 
             /*JButton tlacitko = new JButton();
             tlacitko.addActionListener(tuk);

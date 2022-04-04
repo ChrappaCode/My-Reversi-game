@@ -1,10 +1,7 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
+import sk.stuba.fei.uim.oop.nastavenia.*;
 import sk.stuba.fei.uim.oop.objekty.Kamen;
-import sk.stuba.fei.uim.oop.nastavenia.MyskaNastavenia;
-import sk.stuba.fei.uim.oop.nastavenia.BoxLogika;
-import sk.stuba.fei.uim.oop.nastavenia.Tuk;
-import sk.stuba.fei.uim.oop.nastavenia.OthelloNastavenia;
 import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
 
 import javax.imageio.ImageIO;
@@ -17,46 +14,14 @@ public class Othello {
 
     private static final int VELKOST_HRACEJ_PLOCHY_X = 6;
     private static final int VELKOST_HRACEJ_PLOCHY_Y = 6;
+    private JFrame okno;
+    private JPanel hernyPanel;
 
     public Othello(){
 
-        JFrame okno = new JFrame("Hra Othello");
-        okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        okno.setSize(720,760);
-        okno.setResizable(false);
-        okno.setLayout(new BorderLayout());
-
-        try {
-            okno.setIconImage(ImageIO.read(Othello.class.getResourceAsStream("/Jayzniggawhatniggawho.jpg")));
-        }
-        catch (IOException e){}
+        okno = noveOkno(VELKOST_HRACEJ_PLOCHY_X,VELKOST_HRACEJ_PLOCHY_Y);
 
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
-        Tuk tuk = new Tuk();
-
-        JPanel hernyPanel = new JPanel();
-        hernyPanel.setLayout(new GridLayout(VELKOST_HRACEJ_PLOCHY_X,VELKOST_HRACEJ_PLOCHY_Y));
-        hernyPanel.setBackground(Color.DARK_GRAY);
-        hernyPanel.setBorder(BorderFactory.createLineBorder(Color.black));
-
-        for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X*VELKOST_HRACEJ_PLOCHY_Y; i++) {
-
-            JPanel mriezka = new JPanel( new BorderLayout() );
-
-            if(i == 7 || i == 9)
-                mriezka.add(new Kamen());
-            MyskaNastavenia mriezkaNastavenia = new MyskaNastavenia(mriezka,okno);
-            mriezka.addMouseListener(mriezkaNastavenia);
-            mriezka.setBorder(BorderFactory.createLineBorder(Color.black,4));
-            mriezka.setBackground(Color.green);
-            hernyPanel.add(mriezka);
-
-            /*JButton tlacitko = new JButton();
-            tlacitko.addActionListener(tuk);
-            tlacitko.addKeyListener(nastavenia);
-            hernyPanel.add(tlacitko);*/
-        }
-
 
         MyskaNastavenia myskaNastavenia = new MyskaNastavenia(hernyPanel,okno);
         hernyPanel.addMouseListener(myskaNastavenia);
@@ -72,12 +37,13 @@ public class Othello {
         String[] velkosti ={"6x6","8x8","10x10","12x12"};
         JComboBox box = new JComboBox(velkosti);
         box.setBackground(Color.cyan);
-        box.setSelectedIndex(1);
+        box.setSelectedIndex(0);
 
         BoxLogika boxLogika = new BoxLogika(okno);
         box.addActionListener(boxLogika);
 
         HernaPlocha body = new HernaPlocha();
+
 
         JLabel cierneBody = new JLabel("      čierne : " + body.getA() + "      ");
         JLabel bieleBody = new JLabel("       biele : " + body.getA() + "       ");
@@ -99,4 +65,51 @@ public class Othello {
 
         okno.setVisible(true);
     }
+
+
+    public JFrame noveOkno(int x,int y){
+
+        okno = new JFrame("Hra Othello");
+        okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        okno.setSize(600,630);
+        okno.setResizable(false);
+        okno.setLayout(new BorderLayout());
+
+        try {
+            okno.setIconImage(ImageIO.read(Othello.class.getResourceAsStream("/Jayzniggawhatniggawho.jpg")));
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        hernyPanel = new JPanel();
+        hernyPanel.setLayout(new GridLayout(x,y));
+        hernyPanel.setBackground(Color.DARK_GRAY);
+        hernyPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+
+        //Tuk tuk = new Tuk();
+
+        for (int i = 0; i < x * y; i++) {
+
+            JPanel mriezka = new JPanel( new BorderLayout() );
+
+            if(i == 7 || i == 23)
+                mriezka.add(new Kamen());
+
+            MyskaNastavenia mriezkaNastavenia = new MyskaNastavenia(mriezka,okno);
+            mriezka.addMouseListener(mriezkaNastavenia);
+            mriezka.setBorder(BorderFactory.createLineBorder(Color.black,4));
+            mriezka.setBackground(Color.green);
+            hernyPanel.add(mriezka);
+
+
+            /*JButton tlacitko = new JButton();
+            tlacitko.addActionListener(tuk);
+            tlacitko.addKeyListener(nastavenia);
+            hernyPanel.add(tlacitko);*/
+        }
+
+        return okno;
+    }
+
 }

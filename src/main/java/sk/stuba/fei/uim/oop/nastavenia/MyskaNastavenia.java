@@ -36,7 +36,7 @@ public class MyskaNastavenia extends UniverzalnyAdapter {
     }
     @Override
     public void mouseEntered(MouseEvent e) {
-        if(x != 4 && y != 4){
+        if(x != 4 || y != 4){
             panel.setBackground(Color.red);
         }
     }

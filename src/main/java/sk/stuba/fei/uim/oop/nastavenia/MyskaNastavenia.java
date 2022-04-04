@@ -11,18 +11,38 @@ public class MyskaNastavenia extends UniverzalnyAdapter {
 
     JPanel panel;
     JFrame okno;
+    private int x;
+    private int y;
 
     public MyskaNastavenia(JPanel panel, JFrame okno){
         this.panel = panel;
         this.okno = okno;
     }
 
-
     @Override
     public void mouseClicked(MouseEvent e) {
-        System.out.print("x : " + panel.getComponentAt(e.getPoint()).getX());
-        System.out.println(" | y : " + panel.getComponentAt(e.getPoint()).getY());
 
+        this.x = panel.getComponentAt(e.getPoint()).getX();
+        this.y = panel.getComponentAt(e.getPoint()).getY();
+
+        if(x == 4 && y == 4){
+            System.out.println("Kamen");
+
+        }
+        else{
+        System.out.print("x : " + x);
+        System.out.println(" | y : " + y);
+        }
+    }
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        if(x != 4 && y != 4){
+            panel.setBackground(Color.red);
+        }
+    }
+    @Override
+    public void mouseExited(MouseEvent e) {
+        panel.setBackground(Color.green);
     }
 
 

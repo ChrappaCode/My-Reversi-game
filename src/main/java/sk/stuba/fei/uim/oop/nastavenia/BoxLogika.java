@@ -1,6 +1,7 @@
 package sk.stuba.fei.uim.oop.nastavenia;
 
 import sk.stuba.fei.uim.oop.grafickeprostredie.Othello;
+import sk.stuba.fei.uim.oop.objekty.Kamen;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

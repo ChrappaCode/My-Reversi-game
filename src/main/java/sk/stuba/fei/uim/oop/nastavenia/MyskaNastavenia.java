@@ -1,8 +1,5 @@
 package sk.stuba.fei.uim.oop.nastavenia;
 
-import sk.stuba.fei.uim.oop.nastavenia.UniverzalnyAdapter;
-import sk.stuba.fei.uim.oop.objekty.Kamen;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;

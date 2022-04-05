@@ -42,7 +42,8 @@ public class MyskaNastavenia extends UniverzalnyAdapter {
         panel.setBackground(Color.green);
     }
 
-
-
-
+    /*@Override
+    public void mouseMoved(MouseEvent e) {
+        System.out.println("Mouse movement detected! Actual mouse position is: " + e.getX()+ "," + e.getY() + ".");
+    }*/
 }

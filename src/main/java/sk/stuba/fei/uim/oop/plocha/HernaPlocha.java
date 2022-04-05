@@ -50,6 +50,7 @@ public class HernaPlocha {
 
             MyskaNastavenia mriezkaNastavenia = new MyskaNastavenia(mriezka, okno);
             mriezka.addMouseListener(mriezkaNastavenia);
+            //mriezka.addMouseMotionListener(mriezkaNastavenia);
             mriezka.setBorder(BorderFactory.createLineBorder(Color.black,4));
             mriezka.setBackground(Color.green);
             mriezkaPole[i] = mriezka;
@@ -57,8 +58,8 @@ public class HernaPlocha {
 
         }
 
-        MyskaNastavenia myskaNastavenia = new MyskaNastavenia(hernyPanel, okno);
-        hernyPanel.addMouseListener(myskaNastavenia);
+        /*MyskaNastavenia myskaNastavenia = new MyskaNastavenia(hernyPanel, okno);
+        hernyPanel.addMouseListener(myskaNastavenia);*/
 
         okno.add(hernyPanel);
 

@@ -1,6 +1,5 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import lombok.Getter;
 import sk.stuba.fei.uim.oop.nastavenia.*;
 import sk.stuba.fei.uim.oop.objekty.Kamen;
 import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
@@ -10,23 +9,22 @@ import java.awt.*;
 
 public class Othello {
 
-    private static final int VELKOST_HRACEJ_PLOCHY_X = 6;
-    private static final int VELKOST_HRACEJ_PLOCHY_Y = 6;
-    private JFrame okno;
-    //private JPanel hernyPanel;
+    //private static final int VELKOST_HRACEJ_PLOCHY_X = 6;
+    //private static final int VELKOST_HRACEJ_PLOCHY_Y = 6;
 
-    @Getter
-    JPanel[] mriezkaPole = new JPanel[VELKOST_HRACEJ_PLOCHY_Y*VELKOST_HRACEJ_PLOCHY_X];
+    private JFrame okno;
+
+    //private JPanel hernyPanel;
 
 
     public Othello(){
 
         HernaPlocha hernaPlocha = new HernaPlocha();
-        okno = hernaPlocha.noveOkno(6,6);
+        this.okno = hernaPlocha.noveOkno(6,6);
 
-        OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
+        OthelloNastavenia nastavenia = new OthelloNastavenia(this.okno);
 
-        hernaPlocha.getMriezkaPole()[2].add(new Kamen());
+        hernaPlocha.getMriezkaPole()[2][4].add(new Kamen());
 
 
         JPanel menu = new JPanel();
@@ -36,7 +34,9 @@ public class Othello {
         restart.addActionListener(nastavenia);
         restart.addKeyListener(nastavenia);
 
+
         String[] velkosti ={"6x6","8x8","10x10","12x12"};
+
         JComboBox box = new JComboBox(velkosti);
         box.setBackground(Color.cyan);
         box.setSelectedIndex(0);
@@ -59,9 +59,9 @@ public class Othello {
         menu.add(box , BorderLayout.PAGE_END);
         menu.add(cierneBody, BorderLayout.LINE_START);
         menu.add(bieleBody , BorderLayout.LINE_END);
-        okno.add(menu , BorderLayout.PAGE_END);
+        this.okno.add(menu , BorderLayout.PAGE_END);
 
-        okno.setVisible(true);
+        this.okno.setVisible(true);
     }
 
 }

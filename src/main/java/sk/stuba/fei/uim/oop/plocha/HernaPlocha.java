@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class HernaPlocha {
+public class HernaPlocha extends JFrame{
 
     private static final int VELKOST_HRACEJ_PLOCHY_X = 6;
     private static final int VELKOST_HRACEJ_PLOCHY_Y = 6;
@@ -19,7 +19,7 @@ public class HernaPlocha {
     private JPanel hernyPanel;
 
     @Getter
-    JPanel[] mriezkaPole = new JPanel[VELKOST_HRACEJ_PLOCHY_Y*VELKOST_HRACEJ_PLOCHY_X];
+    JPanel[][] mriezkaPole = new JPanel[VELKOST_HRACEJ_PLOCHY_Y][VELKOST_HRACEJ_PLOCHY_X];
 
     public JFrame noveOkno(int x, int y){
 
@@ -28,6 +28,7 @@ public class HernaPlocha {
         okno.setSize(600,630);
         okno.setResizable(false);
         okno.setLayout(new BorderLayout());
+
 
         try {
             okno.setIconImage(ImageIO.read(Othello.class.getResourceAsStream("/Jayzniggawhatniggawho.jpg")));
@@ -40,22 +41,27 @@ public class HernaPlocha {
         hernyPanel.setLayout(new GridLayout(x,y));
         hernyPanel.setBackground(Color.DARK_GRAY);
         hernyPanel.setBorder(BorderFactory.createLineBorder(Color.black));
+        hernyPanel.setOpaque(true);
 
-        for (int i = 0; i < x * y; i++) {
+        for (int i = 0; i < VELKOST_HRACEJ_PLOCHY_X; i++) {
+            for (int j = 0; j < VELKOST_HRACEJ_PLOCHY_Y; j++) {
 
             JPanel mriezka = new JPanel( new BorderLayout() );
 
-            if(i == 7 || i == 23)
+            if(j == 1 && i == 0)
                 mriezka.add(new Kamen());
 
             MyskaNastavenia mriezkaNastavenia = new MyskaNastavenia(mriezka, okno);
             mriezka.addMouseListener(mriezkaNastavenia);
             //mriezka.addMouseMotionListener(mriezkaNastavenia);
+
+            mriezka.setPreferredSize(new Dimension(70,70));
             mriezka.setBorder(BorderFactory.createLineBorder(Color.black,4));
             mriezka.setBackground(Color.green);
-            mriezkaPole[i] = mriezka;
+            mriezkaPole[i][j] = mriezka;
             hernyPanel.add(mriezka);
 
+            }
         }
 
         /*MyskaNastavenia myskaNastavenia = new MyskaNastavenia(hernyPanel, okno);
@@ -65,4 +71,8 @@ public class HernaPlocha {
 
         return okno;
     }
+
+    //TODO prerobiť tak ako ma Peťo aby tam bol bait class
+    //TODO ENUM
+    //TODO PREROBIT NAJPRV VYTVOR PANEL AZ POTOM OKNO
 }

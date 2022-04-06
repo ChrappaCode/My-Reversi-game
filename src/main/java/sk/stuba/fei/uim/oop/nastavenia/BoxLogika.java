@@ -21,22 +21,22 @@ public class BoxLogika extends UniverzalnyAdapter{
 
         if(cb.getSelectedItem().equals("6x6")){
             okno.dispose();
-            new Hra(6);
+            new Hra(6,0);
 
         }
         else if(cb.getSelectedItem().equals("8x8")){
             okno.dispose();
-            new Hra(8);
+            new Hra(8,1);
 
         }
         else if(cb.getSelectedItem().equals("10x10")){
             okno.dispose();
-            new Hra(10);
+            new Hra(10,2);
 
         }
         else if(cb.getSelectedItem().equals("12x12")){
             okno.dispose();
-            new Hra(12);
+            new Hra(12,3);
         }
     }
 

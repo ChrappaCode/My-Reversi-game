@@ -1,6 +1,6 @@
 package sk.stuba.fei.uim.oop.nastavenia;
 
-import sk.stuba.fei.uim.oop.grafickeprostredie.Othello;
+import sk.stuba.fei.uim.oop.grafickeprostredie.ZapniHru;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -20,7 +20,7 @@ public class OthelloNastavenia extends UniverzalnyAdapter{
     public void restart() {
         System.out.println("reset");
         okno.dispose();
-        new Othello();
+        new ZapniHru();
     }
 
     public void zavriHru() {

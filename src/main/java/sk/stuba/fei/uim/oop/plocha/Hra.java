@@ -48,7 +48,8 @@ public class Hra{
             okno.setIconImage(ImageIO.read(ZapniHru.class.getResourceAsStream("/Jayzniggawhatniggawho.jpg")));
         }
         catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Obrazok sa nepodarilo načítať");
+            System.exit(0);
         }
 
         hernyPanel = new JPanel();
@@ -127,11 +128,9 @@ public class Hra{
         okno.pack();
         okno.setVisible(true);
 
-
     }
 
     public void novaHra() {
-
 
         prveKolo();
 

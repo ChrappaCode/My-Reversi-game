@@ -27,17 +27,20 @@ public class MyskaNastavenia extends UniverzalnyAdapter {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        this.x = panel.getComponentAt(e.getPoint()).getX();
-        this.y = panel.getComponentAt(e.getPoint()).getY();
+        this.x = panel.getComponentAt(e.getPoint()).getX() / 60;
+        this.y = panel.getComponentAt(e.getPoint()).getY() / 60;
 
-        if(x == 4 && y == 4){
-            if(panel.getComponentAt(x,y) instanceof BielyKamen)
-                System.out.println("Biely Kamen");
-            if(panel.getComponentAt(x,y) instanceof CiernyKamen)
-                System.out.println("Cierny Kamen");
-            if(panel.getComponentAt(x,y) instanceof PrazdnyKamen)
-                System.out.println("Prazdny Kamen");
+
+        if(panel.getComponentAt(e.getX(),e.getY()) instanceof BielyKamen){
+            System.out.println("Biely Kamen");
         }
+        else if(panel.getComponentAt(e.getX(),e.getY()) instanceof CiernyKamen){
+            System.out.println("Cierny Kamen");
+        }
+        else if(panel.getComponentAt(e.getX(),e.getY()) instanceof PrazdnyKamen){
+            System.out.println("Prazdny Kamen");
+        }
+
         else{
         System.out.print("x : " + x);
         System.out.println(" | y : " + y);

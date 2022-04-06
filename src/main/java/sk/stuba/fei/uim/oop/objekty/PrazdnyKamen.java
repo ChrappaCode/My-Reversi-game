@@ -21,6 +21,7 @@ public class PrazdnyKamen extends JPanel {
 
         g.setColor(Color.BLACK);
         g.drawArc(0,0,51,51,0,360);
+        g.drawArc(0,0,50,50,0,360);
 
     }
 

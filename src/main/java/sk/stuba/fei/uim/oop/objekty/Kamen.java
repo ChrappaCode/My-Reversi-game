@@ -16,7 +16,7 @@ public class Kamen extends JPanel {
     private void kresliKruzok(Graphics g){
 
         g.setColor(Color.black);
-        g.fillArc(14,10,60,60,0,360);
+        g.fillArc(0,0,51,51,0,360);
 
     }
 

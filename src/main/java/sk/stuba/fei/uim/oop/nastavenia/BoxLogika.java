@@ -1,8 +1,6 @@
 package sk.stuba.fei.uim.oop.nastavenia;
 
-import sk.stuba.fei.uim.oop.grafickeprostredie.Othello;
-import sk.stuba.fei.uim.oop.objekty.Kamen;
-import sk.stuba.fei.uim.oop.plocha.HernaPlocha;
+import sk.stuba.fei.uim.oop.plocha.Hra;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,28 +20,23 @@ public class BoxLogika extends UniverzalnyAdapter{
         System.out.println(cb.getSelectedItem());
 
         if(cb.getSelectedItem().equals("6x6")){
-            /*okno.dispose();
-            new Othello();*/
-            okno.setSize(600,630);
+            okno.dispose();
+            new Hra(6);
 
         }
         else if(cb.getSelectedItem().equals("8x8")){
-            /*okno.dispose();
-            new Othello();*/
-            okno.setSize(720,760);
+            okno.dispose();
+            new Hra(8);
 
         }
         else if(cb.getSelectedItem().equals("10x10")){
-            /*okno.dispose();
-            new Othello();*/
-            okno.setSize(800,830);
+            okno.dispose();
+            new Hra(10);
 
         }
         else if(cb.getSelectedItem().equals("12x12")){
-            /*okno.dispose();
-            new Othello();*/
-            okno.setSize(920,960);
-
+            okno.dispose();
+            new Hra(12);
         }
     }
 

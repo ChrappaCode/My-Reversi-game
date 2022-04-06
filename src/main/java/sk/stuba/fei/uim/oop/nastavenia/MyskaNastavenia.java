@@ -7,13 +7,11 @@ import java.awt.event.MouseEvent;
 public class MyskaNastavenia extends UniverzalnyAdapter {
 
     JPanel panel;
-    JFrame okno;
     private int x;
     private int y;
 
-    public MyskaNastavenia(JPanel panel, JFrame okno){
+    public MyskaNastavenia(JPanel panel){
         this.panel = panel;
-        this.okno = okno;
     }
 
     @Override
@@ -39,7 +37,7 @@ public class MyskaNastavenia extends UniverzalnyAdapter {
     }
     @Override
     public void mouseExited(MouseEvent e) {
-        panel.setBackground(Color.green);
+        panel.setBackground(Color.YELLOW);
     }
 
     /*@Override

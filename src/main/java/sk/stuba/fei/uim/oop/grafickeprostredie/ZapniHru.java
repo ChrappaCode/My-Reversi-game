@@ -6,7 +6,8 @@ public class ZapniHru {
 
     public ZapniHru(){
 
-        new Hra(6,0);
+        Hra hra = new Hra();
+        hra.hraStart(6,0);
 
     }
 }

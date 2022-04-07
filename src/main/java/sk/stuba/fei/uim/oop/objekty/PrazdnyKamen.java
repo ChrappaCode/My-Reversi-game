@@ -20,8 +20,8 @@ public class PrazdnyKamen extends JPanel {
     private void kresliKruzok(Graphics g){
 
         g.setColor(Color.BLACK);
-        g.drawArc(0,0,51,51,0,360);
-        g.drawArc(0,0,50,50,0,360);
+        g.drawArc(0,0,54,54,0,360);
+        g.drawArc(0,0,55,55,0,360);
 
     }
 

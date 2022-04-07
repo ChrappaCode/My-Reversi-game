@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 public class BoxLogika extends UniverzalnyAdapter{
 
     private JFrame okno;
+    private Hra hra = new Hra();
 
     public BoxLogika(JFrame okno){
         this.okno = okno;
@@ -21,22 +22,22 @@ public class BoxLogika extends UniverzalnyAdapter{
 
         if(cb.getSelectedItem().equals("6x6")){
             okno.dispose();
-            new Hra(6,0);
+            hra.hraStart(6,0);
 
         }
         else if(cb.getSelectedItem().equals("8x8")){
             okno.dispose();
-            new Hra(8,1);
+            hra.hraStart(8,0);
 
         }
         else if(cb.getSelectedItem().equals("10x10")){
             okno.dispose();
-            new Hra(10,2);
+            hra.hraStart(10,0);
 
         }
         else if(cb.getSelectedItem().equals("12x12")){
             okno.dispose();
-            new Hra(12,3);
+            hra.hraStart(12,0);
         }
     }
 

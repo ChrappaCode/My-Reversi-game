@@ -1,6 +1,7 @@
 package sk.stuba.fei.uim.oop.plocha;
 
 import lombok.Getter;
+import lombok.Setter;
 import sk.stuba.fei.uim.oop.KamenFarba;
 import sk.stuba.fei.uim.oop.grafickeprostredie.ZapniHru;
 import sk.stuba.fei.uim.oop.nastavenia.*;
@@ -16,25 +17,34 @@ public class Hra{
     @Getter
     private JPanel hernyPanel;
 
+    private JPanel mriezka;
+
     private JLabel cierneBody;
     private JLabel bieleBody;
     private JLabel kohoKolo;
 
+
     private JFrame okno;
 
+    @Getter
     private JPanel[][] mriezkaPole;
 
+    @Getter @Setter
     private int pocetCiernych = 2;
+    @Getter @Setter
     private int pocetBielich = 2;
+
+    @Getter @Setter
+    private int pocitadlo = 0;
 
     private int velkost;
     private boolean tvojeKolo = true;
 
-    KamenFarba[][] plocha = new KamenFarba[velkost][velkost];
+    private KamenFarba[][] plocha = new KamenFarba[velkost][velkost];
 
-    //private KamenFarba pohyb;
+    private KamenFarba pohyb;
 
-    public Hra(int velkost , int boxIndex){
+    public void hraStart(int velkost , int boxIndex){
 
         this.velkost = velkost;
 
@@ -61,12 +71,9 @@ public class Hra{
 
         for (int i = 0; i < velkost; i++) {
             for (int j = 0; j < velkost; j++) {
-                JPanel mriezka = new JPanel( new BorderLayout() );
-                MyskaNastavenia mriezkaNastavenia = new MyskaNastavenia(mriezka,mriezkaPole);
-                mriezka.addMouseListener(mriezkaNastavenia);
-                mriezka.addMouseMotionListener(mriezkaNastavenia);
+                mriezka = new JPanel( new BorderLayout() );
                 mriezka.setPreferredSize(new Dimension(60,60));
-                mriezka.setBorder(BorderFactory.createLineBorder(Color.black,4));
+                mriezka.setBorder(BorderFactory.createLineBorder(Color.black,2));
                 mriezka.setBackground(Color.PINK);
                 mriezkaPole[i][j] = mriezka;
 
@@ -77,12 +84,17 @@ public class Hra{
                     mriezkaPole[i][j].add(new BielyKamen());
                 }
 
+                HlavnaLogika mriezkaNastavenia = new HlavnaLogika(hernyPanel,mriezka,mriezkaPole,okno);
+                mriezka.addMouseListener(mriezkaNastavenia);
+                mriezka.addMouseMotionListener(mriezkaNastavenia);
+
                 hernyPanel.add(mriezka);
             }
         }
         okno.add(hernyPanel);
 
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);
+
 
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);
@@ -127,21 +139,26 @@ public class Hra{
 
         okno.pack();
         okno.setVisible(true);
-
     }
 
     public void novaHra() {
 
         prveKolo();
 
-        /*pocetBielich++;
-        bieleBody.setText("  biele : " + pocetBielich + "  ");*/
-
     }
 
-    public void dajKamen(int x, int y, KamenFarba color) { // placing piece in the logical board
-        if(plocha[x][y] == KamenFarba.PRAZDNA)
-            plocha[x][y] = color;
+    public void dajKamen(int x, int y, KamenFarba color) {
+            if(color == KamenFarba.CIERNA){
+                mriezkaPole[x][y].add(new CiernyKamen());
+                pocetCiernych++;
+                cierneBody.setText(" čierne : " + pocetCiernych + " ");
+
+            }
+            if(color == KamenFarba.BIELA){
+                mriezkaPole[x][y].add(new BielyKamen());
+                pocetBielich++;
+                bieleBody.setText("  biele : " + pocetBielich + "  ");
+            }
     }
 
     public void prveKolo(){
@@ -158,6 +175,9 @@ public class Hra{
         }
     }
 
+    public void tst(){
+        mriezkaPole[1][1].add(new PrazdnyKamen());
+    }
 
 
 }

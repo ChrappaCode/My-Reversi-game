@@ -5,7 +5,7 @@ public class ZapniHru2 {
 
     public ZapniHru2(){
 
-        new Pokus2(6);
+        new Pokus2(6,0);
 
     }
 }

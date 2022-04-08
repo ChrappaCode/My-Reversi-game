@@ -4,14 +4,14 @@ import sk.stuba.fei.uim.oop.nastavenia.UniverzalnyAdapter;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class BoxLogika2 extends UniverzalnyAdapter {
 
-    private JPanel panel;
-
-    public BoxLogika2(JPanel panel){
-        this.panel = panel;
+    private JFrame okno;
+    public BoxLogika2(JFrame okno){
+        this.okno = okno;
     }
 
     @Override
@@ -21,22 +21,22 @@ public class BoxLogika2 extends UniverzalnyAdapter {
         System.out.println(cb.getSelectedItem());
 
         if(cb.getSelectedItem().equals("6x6")){
-            panel.removeAll();
-            panel.repaint();
-
+            okno.dispose();
+            new Pokus2(6,0);
         }
+
         else if(cb.getSelectedItem().equals("8x8")){
-            panel.removeAll();
-            panel.repaint();
+            okno.dispose();
+            new Pokus2(8,1);
         }
         else if(cb.getSelectedItem().equals("10x10")){
-            panel.removeAll();
-            panel.repaint();
+            okno.dispose();
+            new Pokus2(10,2);
 
         }
         else if(cb.getSelectedItem().equals("12x12")){
-            panel.removeAll();
-            panel.repaint();
+            okno.dispose();
+            new Pokus2(12,3);
         }
     }
 

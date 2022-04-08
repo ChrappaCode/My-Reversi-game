@@ -13,10 +13,6 @@ public class OthelloNastavenia extends UniverzalnyAdapter{
         this.okno = okno;
     }
 
-    public OthelloNastavenia() {
-
-    }
-
     public void restart() {
         System.out.println("reset");
         okno.dispose();

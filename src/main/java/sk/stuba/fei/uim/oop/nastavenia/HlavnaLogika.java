@@ -4,6 +4,8 @@ import lombok.Getter;
 import sk.stuba.fei.uim.oop.objekty.BielyKamen;
 import sk.stuba.fei.uim.oop.objekty.CiernyKamen;
 import sk.stuba.fei.uim.oop.objekty.PrazdnyKamen;
+import java.util.Random;
+import sk.stuba.fei.uim.oop.plocha.Hra;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,18 +17,21 @@ public class HlavnaLogika extends UniverzalnyAdapter {
     private JPanel panel;
     private JPanel[][] panelCely;
     private JFrame okno;
+    private Random rand = new Random();
 
+    private int velkostPola;
 
     @Getter
     private int x;
     @Getter
     private int y;
 
-    public HlavnaLogika(JPanel panel, JPanel mriezka, JPanel[][] panelCely , JFrame okno){
+    public HlavnaLogika(JPanel panel, JPanel mriezka, JPanel[][] panelCely , JFrame okno , int velkostPola){
         this.panel = panel;
         this.mriezka = mriezka;
         this.panelCely = panelCely;
-        this.okno = okno;
+        this.velkostPola = velkostPola;
+        //this.okno = okno;
     }
 
     @Override
@@ -42,12 +47,14 @@ public class HlavnaLogika extends UniverzalnyAdapter {
             System.out.println("Cierny Kamen");
         }
         else if(mriezka.getComponentAt(e.getX(),e.getY()) instanceof PrazdnyKamen){
-            System.out.println("Prazdny Kamen");
+            mriezka.remove(0);
+            this.x = mriezka.getComponentAt(e.getPoint()).getX() / 60;
+            this.y = mriezka.getComponentAt(e.getPoint()).getY() / 60;
+            polozCiernyKamen(x,y);
+            UItah();
         }
 
         else{
-
-            polozKamen(x,y);
 
             System.out.print("x : " + x);
             System.out.println(" | y : " + y);
@@ -66,10 +73,22 @@ public class HlavnaLogika extends UniverzalnyAdapter {
         }
     }
 
-    public void polozKamen(int x, int  y){
+    public void polozCiernyKamen(int x, int  y){
             panelCely[y][x].add(new CiernyKamen());
-            okno.repaint();
+            panel.repaint();
             panelCely[x][y].updateUI();
+    }
+
+    public void UItah(){
+
+        int nahodne1 = rand.nextInt(velkostPola);
+        int nahodne2 = rand.nextInt(velkostPola);
+
+        panelCely[nahodne1][nahodne2].add(new BielyKamen());
+        panel.repaint();
+        panelCely[nahodne1][nahodne2].updateUI();
+
+
     }
 
 }

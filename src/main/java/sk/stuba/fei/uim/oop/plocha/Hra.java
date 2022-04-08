@@ -2,7 +2,7 @@ package sk.stuba.fei.uim.oop.plocha;
 
 import lombok.Getter;
 import lombok.Setter;
-import sk.stuba.fei.uim.oop.KamenFarba;
+import sk.stuba.fei.uim.oop.objekty.KamenFarba;
 import sk.stuba.fei.uim.oop.grafickeprostredie.ZapniHru;
 import sk.stuba.fei.uim.oop.nastavenia.*;
 import sk.stuba.fei.uim.oop.objekty.*;
@@ -22,7 +22,6 @@ public class Hra{
     private JLabel cierneBody;
     private JLabel bieleBody;
     private JLabel kohoKolo;
-
 
     private JFrame okno;
 
@@ -84,13 +83,14 @@ public class Hra{
                     mriezkaPole[i][j].add(new BielyKamen());
                 }
 
-                HlavnaLogika mriezkaNastavenia = new HlavnaLogika(hernyPanel,mriezka,mriezkaPole,okno);
+                HlavnaLogika mriezkaNastavenia = new HlavnaLogika(hernyPanel,mriezka,mriezkaPole,okno,velkost);
                 mriezka.addMouseListener(mriezkaNastavenia);
                 mriezka.addMouseMotionListener(mriezkaNastavenia);
 
                 hernyPanel.add(mriezka);
             }
         }
+
         okno.add(hernyPanel);
 
         OthelloNastavenia nastavenia = new OthelloNastavenia(okno);

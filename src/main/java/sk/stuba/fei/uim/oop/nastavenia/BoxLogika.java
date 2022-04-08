@@ -27,17 +27,17 @@ public class BoxLogika extends UniverzalnyAdapter{
         }
         else if(cb.getSelectedItem().equals("8x8")){
             okno.dispose();
-            hra.hraStart(8,0);
+            hra.hraStart(8,1);
 
         }
         else if(cb.getSelectedItem().equals("10x10")){
             okno.dispose();
-            hra.hraStart(10,0);
+            hra.hraStart(10,2);
 
         }
         else if(cb.getSelectedItem().equals("12x12")){
             okno.dispose();
-            hra.hraStart(12,0);
+            hra.hraStart(12,3);
         }
     }
 

@@ -1,22 +1,26 @@
 package sk.stuba.fei.uim.oop.nastavenia;
 
-import sk.stuba.fei.uim.oop.grafickeprostredie.ZapniHru;
+import sk.stuba.fei.uim.oop.grafickeprostredie.GUI;
 
 import javax.swing.*;
 import java.awt.event.*;
 
-public class OthelloNastavenia extends UniverzalnyAdapter{
+public class OthelloZakladneNastavenia extends UniverzalnyAdapter {
 
     private JFrame okno;
+    private int aktualnaVelkost;
+    private int aktualnyIndex;
 
-    public OthelloNastavenia(JFrame okno){
+    public OthelloZakladneNastavenia(JFrame okno , int aktualnaVelkost , int aktualnyIndex ){
+        this.aktualnaVelkost = aktualnaVelkost;
+        this.aktualnyIndex = aktualnyIndex;
         this.okno = okno;
     }
 
     public void restart() {
         System.out.println("reset");
         okno.dispose();
-        new ZapniHru();
+        new GUI(aktualnaVelkost,aktualnyIndex);
     }
 
     public void zavriHru() {

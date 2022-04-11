@@ -21,7 +21,7 @@ public class GUI {
         okno.setLayout(new BorderLayout());
 
         try {
-            okno.setIconImage(ImageIO.read(ZapniHru.class.getResourceAsStream("/Jayzniggawhatniggawho.jpg")));
+            okno.setIconImage(ImageIO.read(ZapniHru.class.getResourceAsStream("/Jayzwho.jpg")));
         }
         catch (IOException e) {
             System.out.println("Obrazok sa nepodarilo načítať");

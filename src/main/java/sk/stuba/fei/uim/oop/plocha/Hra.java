@@ -30,6 +30,8 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
 
     private JFrame okno;
 
+    private int koniecHry = 0;
+
     public Hra(int velkost , JFrame okno, int indexVelkosti){
 
         super(new BorderLayout());
@@ -245,12 +247,18 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
 
     private void ktoVyhral(int cierne, int biele) {
 
-        if((cierne + biele == velkost*velkost && cierne > biele))
+        if((cierne + biele == velkost*velkost && cierne > biele) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Čierny vyhral");
-        if((cierne + biele == velkost*velkost && biele > cierne))
+            koniecHry = 1;
+        }
+        if((cierne + biele == velkost*velkost && biele > cierne) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Biely vyhral");
-        if((cierne + biele == velkost*velkost && biele == cierne))
+            koniecHry = 1;
+        }
+        if((cierne + biele == velkost*velkost && biele == cierne) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Pekne remízka");
+            koniecHry = 1;
+        }
     }
 
     @Override
@@ -258,7 +266,6 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
 
         int x = e.getX() / 60;
         int y = e.getY() / 60;
-
 
         if(farebnaPlocha[y][x] == KamenFarba.CIERNA){
             System.out.println("Cierny Kamen");
@@ -301,23 +308,18 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
                 }
             }
         }
-        int test = 0;
         for (int x1 = 0; x1 < velkost; x1++) {
             for (int y1 = 0; y1 < velkost; y1++) {
                 if(pomocnePoleFariebAI[y1][x1] == KamenFarba.PRAZDNA){
-                    System.out.println(pocetMoznychTahov);
                     poleX[pocetMoznychTahov] = y1;
                     poleY[pocetMoznychTahov] = x1;
                     pocetMoznychTahov++;
-                    System.out.println("x: " + poleX[test] + " y: " + poleY[test] +" "+ pomocnePoleFariebAI[y1][x1]);
-                    test++;
                 }
             }
         }
         if(pocetMoznychTahov != 0){
             Random rand = new Random();
             int random = rand.nextInt(pocetMoznychTahov);
-            System.out.println("random: " + random);
 
             if(preklop(poleX[random], poleY[random], farebnyTah, false,velkost)) {
                 preklop(poleX[random], poleY[random], farebnyTah, true, velkost);

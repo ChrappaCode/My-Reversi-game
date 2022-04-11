@@ -20,7 +20,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
     private JPanel bunka;
 
     private KamenFarba[][] farebnaPlocha;
-    private KamenFarba[][] AIFarebnaPlocha;
+    private KamenFarba[][] UIFarebnaPlocha;
 
     private KamenFarba farebnyTah;
 
@@ -36,7 +36,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
 
         super(new BorderLayout());
         this.farebnaPlocha = new KamenFarba[velkost][velkost];
-        this.AIFarebnaPlocha = new KamenFarba[velkost][velkost];
+        this.UIFarebnaPlocha = new KamenFarba[velkost][velkost];
         this.velkost = velkost;
         this.okno = okno;
         setOpaque(true);
@@ -48,7 +48,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);
 
-        JButton restart = new JButton("Ršt");
+        JButton restart = new JButton("Reštart");
         restart.setBackground(new Color(211, 153, 238));
 
         OthelloZakladneNastavenia othelloZakladneNastavenia2 = new OthelloZakladneNastavenia(okno,velkost,indexVelkosti);
@@ -75,9 +75,21 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         bieleBody.setForeground(Color.white);
         kohoKolo.setForeground(Color.yellow);
 
-        JButton nedaSaNic = new JButton("Nič nejde urobiť");
+        JPanel hornyPanel = new JPanel();
+        hornyPanel.setLayout(new GridLayout(2,1));
+
+        JButton nedaSaNic = new JButton("Nejde zahrať");
         nedaSaNic.setBackground(Color.PINK);
-        nedaSaNic.addActionListener(e -> predajKolo(velkost,farebnyTah));
+        nedaSaNic.addActionListener(e -> {
+            predajKolo(velkost,farebnyTah);
+            UIkolo();
+        });
+        nedaSaNic.setBorder(BorderFactory.createLineBorder(Color.yellow,3));
+
+        JLabel velkostPlochy = new JLabel("Veľkosť hracej plochy : " + box.getSelectedItem() , SwingConstants.CENTER);
+        velkostPlochy.setBorder(BorderFactory.createLineBorder(Color.yellow,3));
+        velkostPlochy.setBackground(new Color(211, 153, 238));
+        velkostPlochy.setFont(new Font("Serif",Font.BOLD, 20));
 
         menu.setLayout(new BorderLayout());
         menu.add(kohoKolo,BorderLayout.PAGE_START);
@@ -85,7 +97,10 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         menu.add(box , BorderLayout.PAGE_END);
         menu.add(cierneBody, BorderLayout.LINE_START);
         menu.add(bieleBody , BorderLayout.LINE_END);
-        add(nedaSaNic,BorderLayout.PAGE_START);
+        hornyPanel.add(velkostPlochy);
+        hornyPanel.setBackground(new Color(211, 153, 238));
+        hornyPanel.add(nedaSaNic);
+        add(hornyPanel,BorderLayout.PAGE_START);
 
         JPanel velkostPola = new JPanel();
         velkostPola.setBackground(Color.RED);
@@ -112,7 +127,6 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
                 hernyPanel.add(bunka);
             }
         }
-
         add(hernyPanel, BorderLayout.CENTER);
     }
 
@@ -125,11 +139,8 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         }
         farebnyTah = KamenFarba.CIERNA;
         polozKamen(velkost/2,velkost/2 - 1, KamenFarba.BIELA);
-        GUIrestart(velkost);
         polozKamen(velkost/2,velkost/2, KamenFarba.CIERNA);
-        GUIrestart(velkost);
         polozKamen(velkost/2 - 1,velkost/2, KamenFarba.BIELA);
-        GUIrestart(velkost);
         polozKamen(velkost/2 -1, velkost/2 -1, KamenFarba.CIERNA);
         GUIrestart(velkost);
 
@@ -143,15 +154,17 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         }
     }
 
-    public void  GUIrestart(int velkost) {
+    public void GUIrestart(int velkost) {
 
-        for (int x1 = 0; x1 < velkost; x1++) {
-            for (int y1 = 0; y1 < velkost; y1++) {
-                AIFarebnaPlocha[x1][y1] = KamenFarba.NIC;
+        for (int x = 0; x < velkost; x++) {
+            for (int y = 0; y < velkost; y++) {
+                UIFarebnaPlocha[x][y] = KamenFarba.NIC;
             }
         }
+
         pocetCiernych = 0;
         pocetBielich = 0;
+
         for(int x = 0; x < velkost; x ++) {
             for(int y = 0; y < velkost; y++) {
                 mriezkaPole[x][y].removeAll();
@@ -159,7 +172,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         }
         for(int x = 0; x < velkost; x ++) {
             for(int y = 0; y < velkost; y++) {
-                if(preklop(x, y, farebnyTah, false, velkost)){
+                if(algoritmusNaPreskakovanie(x, y, farebnyTah, false, velkost)){
                     pridajKamenDoPola(x, y, KamenFarba.PRAZDNA.toString());
                 }
                 if(farebnaPlocha[x][y] == KamenFarba.CIERNA) {
@@ -190,7 +203,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         }
         if(farba.equals("PRAZDNA")){
             mriezkaPole[x][y].add(new PrazdnyKamen());
-            AIFarebnaPlocha[x][y] = KamenFarba.PRAZDNA;
+            UIFarebnaPlocha[x][y] = KamenFarba.PRAZDNA;
         }
 
         mriezkaPole[x][y].updateUI();
@@ -198,28 +211,37 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
     }
 
 
-    public boolean preklop(int x, int y, KamenFarba kamenFarba, boolean pomocny , int velkost) {
+    public boolean algoritmusNaPreskakovanie(int x, int y, KamenFarba kamenFarba, boolean pomocny , int velkost) {
+
         boolean daSaZahrat = false;
-        for(int dX = -1; dX < 2; dX++) {
-            for(int dY = -1; dY < 2; dY ++) {
-                if(dX == 0 && dY == 0) {
+
+        for(int x1 = -1; x1 < 2; x1++) {
+            for(int y1 = -1; y1 < 2; y1 ++) {
+                if(x1 == 0 && y1 == 0) {
                     continue;
                 }
-                int liniaX = x + dX;
-                int liniaY = y + dY;
+
+                int liniaX = x + x1;
+                int liniaY = y + y1;
+
                 if(liniaX >= 0 && liniaY >= 0 && liniaX < velkost && liniaY < velkost) {
                     if(farebnaPlocha[liniaX][liniaY] == (kamenFarba == KamenFarba.CIERNA ? KamenFarba.BIELA : KamenFarba.CIERNA)) {
                         for(int vzdialenost = 0; vzdialenost < velkost; vzdialenost++) {
-                            int druhaLiniaX = x+vzdialenost*dX;
-                            int druhaLiniaY = y+vzdialenost*dY;
-                            if(druhaLiniaX < 0 || druhaLiniaY < 0  || druhaLiniaX > velkost-1 || druhaLiniaY > velkost-1){
+
+                            int druhaLiniaX = x + vzdialenost * x1;
+                            int druhaLiniaY = y + vzdialenost * y1;
+
+                            if(druhaLiniaX < 0 || druhaLiniaY < 0  || druhaLiniaY > velkost-1 || druhaLiniaX > velkost-1){
                                 continue;
                             }
+
                             if(farebnaPlocha[druhaLiniaX][druhaLiniaY] == kamenFarba) {
                                 if(pomocny) {
-                                    for(int vzdialenost2 = 1; vzdialenost2 < vzdialenost; vzdialenost2 ++) {
-                                        int preklopX = x+vzdialenost2*dX;
-                                        int preklopY = y+vzdialenost2*dY;
+                                    for(int vzdialenost2 = 1; vzdialenost2 < vzdialenost; vzdialenost2++) {
+
+                                        int preklopX = x + vzdialenost2 * x1;
+                                        int preklopY = y + vzdialenost2 * y1;
+
                                         farebnaPlocha[preklopX][preklopY] = kamenFarba;
                                     }
                                 }
@@ -231,7 +253,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
                 }
             }
         }
-        return daSaZahrat; //false
+        return daSaZahrat; //neda sa
     }
 
     private void predajKolo(int velkost , KamenFarba farba) {
@@ -273,57 +295,57 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         else if(farebnaPlocha[y][x] == KamenFarba.BIELA){
             System.out.println("Biely Kamen");
         }
-        else if(AIFarebnaPlocha[y][x] == KamenFarba.PRAZDNA){
-            if(preklop(y, x, farebnyTah, false,velkost)) {
-                preklop(y, x, farebnyTah, true,velkost);
+        else if(UIFarebnaPlocha[y][x] == KamenFarba.PRAZDNA){
+            if(algoritmusNaPreskakovanie(y, x, farebnyTah, false,velkost)) {
+                algoritmusNaPreskakovanie(y, x, farebnyTah, true,velkost);
                 polozKamen(y, x, farebnyTah);
                 GUIrestart(velkost);
                 predajKolo(velkost,farebnyTah);
-                AIkolo();
+                UIkolo();
             }
         }
     }
 
-    private void AIkolo(){
+    private void UIkolo(){
 
         int pocetMoznychTahov = 0;
         int[] poleX = new int[velkost*velkost];
         int[] poleY = new int[velkost*velkost];
         KamenFarba[][] pomocnePoleFariebAI = new KamenFarba[velkost][velkost];
-        for (int x1 = 0; x1 < velkost; x1++) {
-            for (int y1 = 0; y1 < velkost; y1++) {
-                pomocnePoleFariebAI[x1][y1] = KamenFarba.NIC;
+        for (int x = 0; x < velkost; x++) {
+            for (int y = 0; y < velkost; y++) {
+                pomocnePoleFariebAI[x][y] = KamenFarba.NIC;
             }
         }
-        for (int x1 = 0; x1 < velkost; x1++) {
-            for (int y1 = 0; y1 < velkost; y1++) {
-                if(farebnaPlocha[y1][x1] == KamenFarba.CIERNA){
+        for (int x = 0; x < velkost; x++) {
+            for (int y = 0; y < velkost; y++) {
+                if(farebnaPlocha[y][x] == KamenFarba.CIERNA){
                     continue;
                 }
-                if(farebnaPlocha[y1][x1] == KamenFarba.BIELA){
+                if(farebnaPlocha[y][x] == KamenFarba.BIELA){
                     continue;
                 }
-                if(AIFarebnaPlocha[y1][x1] == KamenFarba.PRAZDNA){
-                    pomocnePoleFariebAI[y1][x1] = KamenFarba.PRAZDNA;
+                if(UIFarebnaPlocha[y][x] == KamenFarba.PRAZDNA){
+                    pomocnePoleFariebAI[y][x] = KamenFarba.PRAZDNA;
                 }
             }
         }
-        for (int x1 = 0; x1 < velkost; x1++) {
-            for (int y1 = 0; y1 < velkost; y1++) {
-                if(pomocnePoleFariebAI[y1][x1] == KamenFarba.PRAZDNA){
-                    poleX[pocetMoznychTahov] = y1;
-                    poleY[pocetMoznychTahov] = x1;
+        for (int x = 0; x < velkost; x++) {
+            for (int y = 0; y < velkost; y++) {
+                if(pomocnePoleFariebAI[y][x] == KamenFarba.PRAZDNA){
+                    poleX[pocetMoznychTahov] = y;
+                    poleY[pocetMoznychTahov] = x;
                     pocetMoznychTahov++;
                 }
             }
         }
         if(pocetMoznychTahov != 0){
-            Random rand = new Random();
-            int random = rand.nextInt(pocetMoznychTahov);
+            Random nahodne = new Random();
+            int nahodnyUItah = nahodne.nextInt(pocetMoznychTahov);
 
-            if(preklop(poleX[random], poleY[random], farebnyTah, false,velkost)) {
-                preklop(poleX[random], poleY[random], farebnyTah, true, velkost);
-                polozKamen(poleX[random], poleY[random], farebnyTah);
+            if(algoritmusNaPreskakovanie(poleX[nahodnyUItah], poleY[nahodnyUItah], farebnyTah, false,velkost)) {
+                algoritmusNaPreskakovanie(poleX[nahodnyUItah], poleY[nahodnyUItah], farebnyTah, true, velkost);
+                polozKamen(poleX[nahodnyUItah], poleY[nahodnyUItah], farebnyTah);
                 GUIrestart(velkost);
                 predajKolo(velkost, farebnyTah);
             }
@@ -332,6 +354,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
             predajKolo(velkost,farebnyTah);
         }
     }
+
     @Override
     public void mouseMoved(MouseEvent e) {
 
@@ -342,7 +365,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         else if(farebnaPlocha[e.getY()/60][e.getX()/60] == KamenFarba.BIELA){
             restartPozadia();
         }
-        else if(AIFarebnaPlocha[e.getY()/60][e.getX()/60] == KamenFarba.PRAZDNA){
+        else if(UIFarebnaPlocha[e.getY()/60][e.getX()/60] == KamenFarba.PRAZDNA){
             mriezkaPole[e.getY()/60][e.getX()/60].setBackground(Color.red);
         }
     }
@@ -354,6 +377,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
             }
         }
     }
+
     @Override
     public void mouseExited(MouseEvent e) {
     }
@@ -369,5 +393,4 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
     @Override
     public void mouseDragged(MouseEvent e) {
     }
-
 }

@@ -123,7 +123,6 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
                 bunka = new JPanel( new BorderLayout() );
                 bunka.setPreferredSize(new Dimension(60,60));
                 bunka.setBorder(BorderFactory.createLineBorder(Color.yellow,2));
-                bunka.setBackground(new Color(211, 153, 238));
                 mriezkaPole[i][j] = bunka;
                 hernyPanel.add(bunka);
             }
@@ -372,9 +371,15 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
     }
 
     private void restartPozadia(){
+        int pozadie = 0;
         for (int x1 = 0; x1 < velkost; x1++) {
+            pozadie++;
             for (int y1 = 0; y1 < velkost; y1++) {
-                mriezkaPole[x1][y1].setBackground(new Color(211, 153, 238));
+                if(pozadie % 2 == 0)
+                    mriezkaPole[x1][y1].setBackground(new Color(211, 153, 238));
+                if(pozadie % 2 != 0)
+                    mriezkaPole[x1][y1].setBackground(Color.PINK);
+                pozadie++;
             }
         }
     }

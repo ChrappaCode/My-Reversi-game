@@ -1,17 +1,14 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import lombok.Getter;
 import sk.stuba.fei.uim.oop.plocha.Hra;
-import sk.stuba.fei.uim.oop.plocha.ZapniHru;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class GUI {
+public class GUI{
 
-    @Getter
     private JFrame okno;
 
     public GUI(int velkost, int indexVelkostPola){

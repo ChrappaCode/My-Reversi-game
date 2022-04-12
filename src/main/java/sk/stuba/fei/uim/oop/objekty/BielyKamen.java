@@ -1,14 +1,9 @@
 package sk.stuba.fei.uim.oop.objekty;
 
-import lombok.Getter;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class BielyKamen extends JPanel {
-
-    @Getter
-    private final String meno = "Biely Kamen";
 
     @Override
     protected void paintComponent(Graphics g) {

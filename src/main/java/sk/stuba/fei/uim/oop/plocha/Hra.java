@@ -78,7 +78,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         JPanel hornyPanel = new JPanel();
         hornyPanel.setLayout(new GridLayout(2,1));
 
-        JButton nedaSaNic = new JButton("Nejde zahrať");
+        JButton nedaSaNic = new JButton("Nejde zahrať, daj kolo súperovi");
         nedaSaNic.setBackground(Color.PINK);
         nedaSaNic.addActionListener(e -> {
             predajKolo(velkost,farebnyTah);

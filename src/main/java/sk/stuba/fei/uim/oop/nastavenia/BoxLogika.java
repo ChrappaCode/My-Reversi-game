@@ -2,7 +2,6 @@ package sk.stuba.fei.uim.oop.nastavenia;
 
 import sk.stuba.fei.uim.oop.grafickeprostredie.GUI;
 
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 

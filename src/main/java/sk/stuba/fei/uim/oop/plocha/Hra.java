@@ -84,6 +84,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
             predajKolo(velkost,farebnyTah);
             UIkolo();
         });
+
         nedaSaNic.setBorder(BorderFactory.createLineBorder(Color.yellow,3));
 
         JLabel velkostPlochy = new JLabel("Veľkosť hracej plochy : " + box.getSelectedItem() , SwingConstants.CENTER);

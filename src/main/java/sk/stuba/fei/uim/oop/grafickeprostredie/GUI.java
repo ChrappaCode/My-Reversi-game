@@ -37,7 +37,7 @@ public class GUI {
 
     }
 
-    public JPanel novyPanel(int velkost,int indexVelkostPola){
+    private JPanel novyPanel(int velkost,int indexVelkostPola){
         return new Hra(velkost,okno,indexVelkostPola);
     }
 }

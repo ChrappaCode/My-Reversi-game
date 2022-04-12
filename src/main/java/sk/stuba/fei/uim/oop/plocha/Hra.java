@@ -113,7 +113,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         hraZacala(velkost);
     }
 
-    public void urobHernyPanel(int velkost){
+    private void urobHernyPanel(int velkost){
 
         mriezkaPole = new JPanel[velkost][velkost];
 
@@ -131,7 +131,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         add(hernyPanel, BorderLayout.CENTER);
     }
 
-    public void hraZacala(int velkost) {
+    private void hraZacala(int velkost) {
 
         for(int x = 0; x < velkost; x++) {
             for(int y = 0; y < velkost; y++) {
@@ -149,13 +149,13 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         hernyPanel.addMouseMotionListener(this);
     }
 
-    public void polozKamen(int x, int y, KamenFarba farba) {
+    private void polozKamen(int x, int y, KamenFarba farba) {
         if(farebnaPlocha[x][y] == KamenFarba.NIC) {
             farebnaPlocha[x][y] = farba;
         }
     }
 
-    public void GUIrestart(int velkost) {
+    private void GUIrestart(int velkost) {
 
         for (int x = 0; x < velkost; x++) {
             for (int y = 0; y < velkost; y++) {
@@ -181,7 +181,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
                     pocetCiernych++;
                     cierneBody.setText(" Čierne : " + pocetCiernych + " ");
                 }
-                if(farebnaPlocha[x][y] == KamenFarba.BIELA) {
+                else if(farebnaPlocha[x][y] == KamenFarba.BIELA) {
                     pridajKamenDoPola(x, y, KamenFarba.BIELA.toString());
                     pocetBielich++;
                     bieleBody.setText("  Biele : " + pocetBielich + "  ");
@@ -192,7 +192,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         restartPozadia();
     }
 
-    public void pridajKamenDoPola(int x, int y, String farba) {
+    private void pridajKamenDoPola(int x, int y, String farba) {
 
         mriezkaPole[x][y].removeAll();
 
@@ -212,7 +212,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
     }
 
 
-    public boolean algoritmusNaPreskakovanie(int x, int y, KamenFarba kamenFarba, boolean pomocny , int velkost) {
+    private boolean algoritmusNaPreskakovanie(int x, int y, KamenFarba kamenFarba, boolean pomocny , int velkost) {
 
         boolean daSaZahrat = false;
 

@@ -17,13 +17,13 @@ public class OthelloZakladneNastavenia extends UniverzalnyAdapter {
         this.okno = okno;
     }
 
-    public void restart() {
+    private void restart() {
         System.out.println("reset");
         okno.dispose();
         new GUI(aktualnaVelkost,aktualnyIndex);
     }
 
-    public void zavriHru() {
+    private void zavriHru() {
         System.out.println("Zavri sa");
         okno.dispose();
         System.exit(0);

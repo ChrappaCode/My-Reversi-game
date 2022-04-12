@@ -48,7 +48,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);
 
-        JButton restart = new JButton("Reštart");
+        JButton restart = new JButton("Ršt");
         restart.setBackground(new Color(211, 153, 238));
 
         OthelloZakladneNastavenia othelloZakladneNastavenia2 = new OthelloZakladneNastavenia(okno,velkost,indexVelkosti);
@@ -65,7 +65,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
         cierneBody = new JLabel("čierne : " + pocetCiernych);
         bieleBody = new JLabel("biele : " + pocetBielich);
         kohoKolo = new JLabel("Kolo hráča : Čierny", SwingConstants.CENTER);
-        kohoKolo.setBorder(BorderFactory.createLineBorder(Color.black));
+        kohoKolo.setBorder(BorderFactory.createLineBorder(Color.yellow));
 
         cierneBody.setFont(new Font("Serif",Font.BOLD, 30));
         bieleBody.setFont(new Font("Serif",Font.BOLD, 30));

@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
-public class Hra extends JPanel implements MouseListener, MouseMotionListener {
+public class HernaLogika extends JPanel implements MouseListener, MouseMotionListener {
 
     private JLabel cierneBody;
     private JLabel bieleBody;
@@ -30,9 +30,11 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
 
     private JFrame okno;
 
+    Random nahodne = new Random();
     private int koniecHry = 0;
+    private int dosliKroky = 0;
 
-    public Hra(int velkost , JFrame okno, int indexVelkosti){
+    public HernaLogika(int velkost , JFrame okno, int indexVelkosti){
 
         super(new BorderLayout());
         this.farebnaPlocha = new KamenFarba[velkost][velkost];
@@ -84,6 +86,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
             predajKolo(velkost,farebnyTah);
             UIkolo();
         });
+        nedaSaNic.setFocusable(false);
 
         nedaSaNic.setBorder(BorderFactory.createLineBorder(Color.yellow,3));
 
@@ -253,7 +256,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
                 }
             }
         }
-        return daSaZahrat; //neda sa
+        return daSaZahrat;
     }
 
     private void predajKolo(int velkost , KamenFarba farba) {
@@ -269,15 +272,15 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
 
     private void ktoVyhral(int cierne, int biele) {
 
-        if((cierne + biele == velkost*velkost && cierne > biele) && koniecHry == 0){
+        if((cierne + biele == velkost*velkost && cierne > biele || (dosliKroky == 1 && cierne > biele)) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Čierny vyhral");
             koniecHry = 1;
         }
-        if((cierne + biele == velkost*velkost && biele > cierne) && koniecHry == 0){
+        if((cierne + biele == velkost*velkost && biele > cierne || (dosliKroky == 1 && cierne < biele)) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Biely vyhral");
             koniecHry = 1;
         }
-        if((cierne + biele == velkost*velkost && biele == cierne) && koniecHry == 0){
+        if((cierne + biele == velkost*velkost && biele == cierne || (dosliKroky == 1 && cierne == biele)) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Pekne remízka");
             koniecHry = 1;
         }
@@ -340,7 +343,6 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener {
             }
         }
         if(pocetMoznychTahov != 0){
-            Random nahodne = new Random();
             int nahodnyUItah = nahodne.nextInt(pocetMoznychTahov);
 
             if(algoritmusNaPreskakovanie(poleX[nahodnyUItah], poleY[nahodnyUItah], farebnyTah, false,velkost)) {

@@ -1,6 +1,6 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import sk.stuba.fei.uim.oop.plocha.Hra;
+import sk.stuba.fei.uim.oop.plocha.HernaLogika;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -35,6 +35,6 @@ public class GUI{
     }
 
     private JPanel novyPanel(int velkost,int indexVelkostPola){
-        return new Hra(velkost,okno,indexVelkostPola);
+        return new HernaLogika(velkost,okno,indexVelkostPola);
     }
 }

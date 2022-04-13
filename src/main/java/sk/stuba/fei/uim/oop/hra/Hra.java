@@ -1,4 +1,4 @@
-package sk.stuba.fei.uim.oop.plocha;
+package sk.stuba.fei.uim.oop.hra;
 
 import sk.stuba.fei.uim.oop.nastavenia.*;
 import sk.stuba.fei.uim.oop.objekty.*;
@@ -8,7 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.Random;
 
-public class HernaLogika extends JPanel implements MouseListener, MouseMotionListener {
+public class Hra extends JPanel implements MouseListener, MouseMotionListener{
 
     private JLabel cierneBody;
     private JLabel bieleBody;
@@ -24,51 +24,59 @@ public class HernaLogika extends JPanel implements MouseListener, MouseMotionLis
 
     private KamenFarba farebnyTah;
 
-    private int pocetCiernych = 2;
-    private int pocetBielich = 2;
+    private int pocetCiernych;
+    private int pocetBielich;
     private int velkost;
 
     private JFrame okno;
 
-    Random nahodne = new Random();
-    private int koniecHry = 0;
-    private int dosliKroky = 0;
+    private Random nahodne;
+    private int koniecHry;
+    private int dosliKroky;
+    private int indexVelkosti;
 
-    public HernaLogika(int velkost , JFrame okno, int indexVelkosti){
+    public Hra(int velkost , JFrame okno, int indexVelkosti){
 
         super(new BorderLayout());
+        this.indexVelkosti = indexVelkosti;
         this.farebnaPlocha = new KamenFarba[velkost][velkost];
         this.UIFarebnaPlocha = new KamenFarba[velkost][velkost];
         this.velkost = velkost;
         this.okno = okno;
+        this.koniecHry = 0;
+        this.dosliKroky = 0;
+        this.pocetBielich = 2;
+        this.pocetCiernych = 2;
+        this.nahodne = new Random();
         setOpaque(true);
 
-        BoxLogika boxLogika = new BoxLogika(this.okno);
-
         urobHernyPanel(velkost);
+        urobMenu();
+
+        hraZacala(velkost);
+    }
+    private void urobMenu(){
 
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);
-
         JButton restart = new JButton("Ršt");
         restart.setBackground(new Color(211, 153, 238));
 
         OthelloZakladneNastavenia othelloZakladneNastavenia2 = new OthelloZakladneNastavenia(okno,velkost,indexVelkosti);
         restart.addActionListener(othelloZakladneNastavenia2);
 
+        BoxLogika boxLogika = new BoxLogika(this.okno);
         String[] velkosti ={"6x6","8x8","10x10","12x12"};
-
         JComboBox box = new JComboBox(velkosti);
         box.setSelectedIndex(indexVelkosti);
         box.setBackground(Color.cyan);
         box.addActionListener(boxLogika);
         box.setFocusable(false);
-
         cierneBody = new JLabel("čierne : " + pocetCiernych);
         bieleBody = new JLabel("biele : " + pocetBielich);
         kohoKolo = new JLabel("Kolo hráča : Čierny", SwingConstants.CENTER);
-        kohoKolo.setBorder(BorderFactory.createLineBorder(Color.yellow));
 
+        kohoKolo.setBorder(BorderFactory.createLineBorder(Color.yellow));
         cierneBody.setFont(new Font("Serif",Font.BOLD, 30));
         bieleBody.setFont(new Font("Serif",Font.BOLD, 30));
         kohoKolo.setFont(new Font("Serif",Font.BOLD, 30));
@@ -79,9 +87,9 @@ public class HernaLogika extends JPanel implements MouseListener, MouseMotionLis
 
         JPanel hornyPanel = new JPanel();
         hornyPanel.setLayout(new GridLayout(2,1));
-
         JButton nedaSaNic = new JButton("Nejde zahrať, daj kolo súperovi");
         nedaSaNic.setBackground(Color.PINK);
+
         nedaSaNic.addActionListener(e -> {
             predajKolo(velkost,farebnyTah);
             UIkolo();
@@ -101,6 +109,7 @@ public class HernaLogika extends JPanel implements MouseListener, MouseMotionLis
         menu.add(box , BorderLayout.PAGE_END);
         menu.add(cierneBody, BorderLayout.LINE_START);
         menu.add(bieleBody , BorderLayout.LINE_END);
+
         hornyPanel.add(velkostPlochy);
         hornyPanel.setBackground(new Color(211, 153, 238));
         hornyPanel.add(nedaSaNic);
@@ -108,12 +117,10 @@ public class HernaLogika extends JPanel implements MouseListener, MouseMotionLis
 
         JPanel velkostPola = new JPanel();
         velkostPola.setBackground(Color.RED);
-
         add(menu , BorderLayout.PAGE_END);
         setFocusable(true);
         addKeyListener(othelloZakladneNastavenia2);
 
-        hraZacala(velkost);
     }
 
     private void urobHernyPanel(int velkost){
@@ -164,7 +171,6 @@ public class HernaLogika extends JPanel implements MouseListener, MouseMotionLis
                 UIFarebnaPlocha[x][y] = KamenFarba.NIC;
             }
         }
-
         pocetCiernych = 0;
         pocetBielich = 0;
 
@@ -212,7 +218,6 @@ public class HernaLogika extends JPanel implements MouseListener, MouseMotionLis
         mriezkaPole[x][y].updateUI();
         hernyPanel.repaint();
     }
-
 
     private boolean algoritmusNaPreskakovanie(int x, int y, KamenFarba kamenFarba, boolean pomocny , int velkost) {
 
@@ -385,7 +390,6 @@ public class HernaLogika extends JPanel implements MouseListener, MouseMotionLis
             }
         }
     }
-
     @Override
     public void mouseExited(MouseEvent e) {
     }

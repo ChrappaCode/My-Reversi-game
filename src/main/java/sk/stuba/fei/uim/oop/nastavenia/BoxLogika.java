@@ -8,6 +8,7 @@ import java.awt.event.ActionEvent;
 public class BoxLogika extends UniverzalnyAdapter {
 
     private JFrame okno;
+
     public BoxLogika(JFrame okno){
         this.okno = okno;
     }

@@ -1,6 +1,6 @@
 package sk.stuba.fei.uim.oop.grafickeprostredie;
 
-import sk.stuba.fei.uim.oop.plocha.HernaLogika;
+import sk.stuba.fei.uim.oop.hra.Hra;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,8 +10,19 @@ import java.io.IOException;
 public class GUI{
 
     private JFrame okno;
+    private JPanel hernyPanel;
+    private int velkost;
+    private int indexVelkostPola;
 
     public GUI(int velkost, int indexVelkostPola){
+
+        this.velkost = velkost;
+        this.indexVelkostPola = indexVelkostPola;
+        urobOkno();
+
+    }
+
+    private void urobOkno(){
 
         okno = new JFrame("Milujem Othello");
         okno.setResizable(false);
@@ -25,16 +36,16 @@ public class GUI{
             System.exit(0);
         }
 
-        okno.add(novyPanel(velkost,indexVelkostPola), BorderLayout.CENTER);
+        novyPanel(1);
 
         okno.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         okno.pack();
         okno.setVisible(true);
-
-
     }
 
-    private JPanel novyPanel(int velkost,int indexVelkostPola){
-        return new HernaLogika(velkost,okno,indexVelkostPola);
+    public void novyPanel(int i){
+        this.hernyPanel = new Hra(velkost,okno,indexVelkostPola);
+        okno.add(hernyPanel);
+        okno.revalidate();
     }
 }

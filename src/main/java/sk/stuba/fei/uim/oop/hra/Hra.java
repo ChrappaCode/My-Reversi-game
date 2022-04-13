@@ -32,7 +32,6 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
 
     private Random nahodne;
     private int koniecHry;
-    private int dosliKroky;
     private int indexVelkosti;
 
     public Hra(int velkost , JFrame okno, int indexVelkosti){
@@ -44,7 +43,6 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
         this.velkost = velkost;
         this.okno = okno;
         this.koniecHry = 0;
-        this.dosliKroky = 0;
         this.pocetBielich = 2;
         this.pocetCiernych = 2;
         this.nahodne = new Random();
@@ -72,6 +70,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
         box.setBackground(Color.cyan);
         box.addActionListener(boxLogika);
         box.setFocusable(false);
+
         cierneBody = new JLabel("čierne : " + pocetCiernych);
         bieleBody = new JLabel("biele : " + pocetBielich);
         kohoKolo = new JLabel("Kolo hráča : Čierny", SwingConstants.CENTER);
@@ -277,15 +276,15 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
 
     private void ktoVyhral(int cierne, int biele) {
 
-        if((cierne + biele == velkost*velkost && cierne > biele || (dosliKroky == 1 && cierne > biele)) && koniecHry == 0){
+        if((cierne + biele == velkost*velkost && cierne > biele) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Čierny vyhral");
             koniecHry = 1;
         }
-        if((cierne + biele == velkost*velkost && biele > cierne || (dosliKroky == 1 && cierne < biele)) && koniecHry == 0){
+        if((cierne + biele == velkost*velkost && biele > cierne) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Biely vyhral");
             koniecHry = 1;
         }
-        if((cierne + biele == velkost*velkost && biele == cierne || (dosliKroky == 1 && cierne == biele)) && koniecHry == 0){
+        if((cierne + biele == velkost*velkost && biele == cierne) && koniecHry == 0){
             JOptionPane.showMessageDialog(okno, "Pekne remízka");
             koniecHry = 1;
         }

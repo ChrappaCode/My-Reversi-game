@@ -46,11 +46,11 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
         setOpaque(true);
 
         urobHernyPanel(velkost);
-        urobMenu();
+        urobHerneMenu();
 
         hraZacala(velkost);
     }
-    private void urobMenu(){
+    private void urobHerneMenu(){
 
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);

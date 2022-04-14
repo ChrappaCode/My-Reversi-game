@@ -52,8 +52,8 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
     }
     private void urobHerneMenu(){
 
-        JPanel menu = new JPanel();
-        menu.setBackground(Color.RED);
+        JPanel herneMenu = new JPanel();
+        herneMenu.setBackground(Color.RED);
 
         cierneBody = new JLabel("čierne : " + pocetCiernych);
         bieleBody = new JLabel("biele : " + pocetBielich);
@@ -90,17 +90,17 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
         dekoracia.setFont(new Font("Serif",Font.BOLD, 30));
         dekoracia.setForeground(Color.YELLOW);
 
-        menu.setLayout(new BorderLayout());
-        menu.add(kohoKolo,BorderLayout.PAGE_START);
-        menu.add(dekoracia, BorderLayout.CENTER);
-        menu.add(cierneBody, BorderLayout.LINE_START);
-        menu.add(bieleBody , BorderLayout.LINE_END);
+        herneMenu.setLayout(new BorderLayout());
+        herneMenu.add(kohoKolo,BorderLayout.PAGE_START);
+        herneMenu.add(dekoracia, BorderLayout.CENTER);
+        herneMenu.add(cierneBody, BorderLayout.LINE_START);
+        herneMenu.add(bieleBody , BorderLayout.LINE_END);
 
         hornyPanel.setBackground(new Color(211, 153, 238));
         hornyPanel.add(nedaSaNic);
         add(hornyPanel,BorderLayout.PAGE_START);
 
-        add(menu , BorderLayout.PAGE_END);
+        add(herneMenu , BorderLayout.PAGE_END);
         setFocusable(false);
     }
 

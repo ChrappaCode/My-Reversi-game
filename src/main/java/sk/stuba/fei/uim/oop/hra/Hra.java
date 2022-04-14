@@ -1,6 +1,5 @@
 package sk.stuba.fei.uim.oop.hra;
 
-import sk.stuba.fei.uim.oop.nastavenia.*;
 import sk.stuba.fei.uim.oop.objekty.*;
 
 import javax.swing.*;
@@ -32,12 +31,10 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
 
     private Random nahodne;
     private int koniecHry;
-    private int indexVelkosti;
 
-    public Hra(int velkost , JFrame okno, int indexVelkosti){
+    public Hra(int velkost , JFrame okno){
 
         super(new BorderLayout());
-        this.indexVelkosti = indexVelkosti;
         this.farebnaPlocha = new KamenFarba[velkost][velkost];
         this.UIFarebnaPlocha = new KamenFarba[velkost][velkost];
         this.velkost = velkost;
@@ -57,25 +54,15 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
 
         JPanel menu = new JPanel();
         menu.setBackground(Color.RED);
-        JButton restart = new JButton("Ršt");
-        restart.setBackground(new Color(211, 153, 238));
-
-        OthelloZakladneNastavenia othelloZakladneNastavenia2 = new OthelloZakladneNastavenia(okno,velkost,indexVelkosti);
-        restart.addActionListener(othelloZakladneNastavenia2);
-
-        BoxLogika boxLogika = new BoxLogika(this.okno);
-        String[] velkosti ={"6x6","8x8","10x10","12x12"};
-        JComboBox box = new JComboBox(velkosti);
-        box.setSelectedIndex(indexVelkosti);
-        box.setBackground(Color.cyan);
-        box.addActionListener(boxLogika);
-        box.setFocusable(false);
 
         cierneBody = new JLabel("čierne : " + pocetCiernych);
         bieleBody = new JLabel("biele : " + pocetBielich);
         kohoKolo = new JLabel("Kolo hráča : Čierny", SwingConstants.CENTER);
 
         kohoKolo.setBorder(BorderFactory.createLineBorder(Color.yellow));
+        cierneBody.setBorder(BorderFactory.createLineBorder(Color.yellow));
+        bieleBody.setBorder(BorderFactory.createLineBorder(Color.yellow));
+
         cierneBody.setFont(new Font("Serif",Font.BOLD, 30));
         bieleBody.setFont(new Font("Serif",Font.BOLD, 30));
         kohoKolo.setFont(new Font("Serif",Font.BOLD, 30));
@@ -85,8 +72,9 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
         kohoKolo.setForeground(Color.yellow);
 
         JPanel hornyPanel = new JPanel();
-        hornyPanel.setLayout(new GridLayout(2,1));
+        hornyPanel.setLayout(new GridLayout(1,1));
         JButton nedaSaNic = new JButton("Nejde zahrať, daj kolo súperovi");
+        nedaSaNic.setFont(new Font("Serif",Font.BOLD, 15));
         nedaSaNic.setBackground(Color.PINK);
 
         nedaSaNic.addActionListener(e -> {
@@ -97,29 +85,23 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
 
         nedaSaNic.setBorder(BorderFactory.createLineBorder(Color.yellow,3));
 
-        JLabel velkostPlochy = new JLabel("Veľkosť hracej plochy : " + box.getSelectedItem() , SwingConstants.CENTER);
-        velkostPlochy.setBorder(BorderFactory.createLineBorder(Color.yellow,3));
-        velkostPlochy.setBackground(new Color(211, 153, 238));
-        velkostPlochy.setFont(new Font("Serif",Font.BOLD, 20));
+        JLabel dekoracia = new JLabel("vs" , SwingConstants.CENTER);
+        dekoracia.setBorder(BorderFactory.createLineBorder(Color.yellow,1));
+        dekoracia.setFont(new Font("Serif",Font.BOLD, 30));
+        dekoracia.setForeground(Color.YELLOW);
 
         menu.setLayout(new BorderLayout());
         menu.add(kohoKolo,BorderLayout.PAGE_START);
-        menu.add(restart, BorderLayout.CENTER);
-        menu.add(box , BorderLayout.PAGE_END);
+        menu.add(dekoracia, BorderLayout.CENTER);
         menu.add(cierneBody, BorderLayout.LINE_START);
         menu.add(bieleBody , BorderLayout.LINE_END);
 
-        hornyPanel.add(velkostPlochy);
         hornyPanel.setBackground(new Color(211, 153, 238));
         hornyPanel.add(nedaSaNic);
         add(hornyPanel,BorderLayout.PAGE_START);
 
-        JPanel velkostPola = new JPanel();
-        velkostPola.setBackground(Color.RED);
         add(menu , BorderLayout.PAGE_END);
-        setFocusable(true);
-        addKeyListener(othelloZakladneNastavenia2);
-
+        setFocusable(false);
     }
 
     private void urobHernyPanel(int velkost){

@@ -35,7 +35,7 @@ public class GUI extends UniverzalnyAdapter {
         okno.setLayout(new BorderLayout());
 
         try {
-            okno.setIconImage(ImageIO.read(ZapniHru.class.getResourceAsStream("/Jayzwho.jpg")));
+            okno.setIconImage(ImageIO.read(ZapniHru.class.getResourceAsStream("/Jayz.jpg")));
         }
         catch (IOException e) {
             System.out.println("Obrazok sa nepodarilo načítať");

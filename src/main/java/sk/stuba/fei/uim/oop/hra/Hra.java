@@ -279,7 +279,7 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
         int y = e.getY() / 60;
 
         if(farebnaPlocha[y][x] == KamenFarba.CIERNA){
-            System.out.println("Cierny Kamen");
+            System.out.println("Čierny Kamen");
         }
         else if(farebnaPlocha[y][x] == KamenFarba.BIELA){
             System.out.println("Biely Kamen");
@@ -292,6 +292,9 @@ public class Hra extends JPanel implements MouseListener, MouseMotionListener{
                 predajKolo(velkost,farebnyTah);
                 UIkolo();
             }
+        }
+        else if(farebnaPlocha[y][x] == KamenFarba.NIC){
+            System.out.println("Prázdna plocha");
         }
     }
 
